@@ -1,11 +1,17 @@
 package com.keehoo.kree.budgetguru;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.keehoo.kree.budgetguru.Rest.RestInterface;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UserCreator extends AppCompatActivity {
     EditText login;
@@ -26,6 +32,7 @@ public class UserCreator extends AppCompatActivity {
                 createUser();
             }
         });
+      //  startActivity(new Intent(this, GetUser.class));
     }
 
     private void createUser() {
@@ -37,6 +44,41 @@ public class UserCreator extends AppCompatActivity {
 
         User user = new User(log, nam, lan, ema, psw);
         Toast.makeText(this, user.getLastName() + " created", Toast.LENGTH_SHORT).show();
+
+        RestInterface restClientImpl = RestInterface.retrofit.create(RestInterface.class);
+        Call<Void> user1 = restClientImpl.createUser(user);
+        user1.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Toast.makeText(UserCreator.this, "success", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(UserCreator.this, "Failure", Toast.LENGTH_SHORT).show();
+                System.out.println(call.toString());
+                System.out.println(t.getLocalizedMessage());
+            }
+        });
+//        getContacts.enqueue(new Callback<List<User>>() {
+//            @Override
+//            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+//                List<User> contacts = response.body();
+//                // ContactAdapter adapter = new ContactAdapter(MainActivity.this, contacts);
+//                // recyclerView.setAdapter(adapter);
+//                Toast.makeText(GetUser.this, "Success", Toast.LENGTH_SHORT).show();
+//                int size = contacts.size();
+//                Toast.makeText(GetUser.this, "Size of the received list : "+ size, Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<User>> call, Throwable t) {
+//                Toast.makeText(GetUser.this, "Unfortunately there's a failure with your call: "+call.toString()+"\n the excpetion detail bewlow : \n"+
+//                        t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+//                System.out.println(call.toString());
+//                System.out.println(t.getLocalizedMessage());
+//            }
+//        });
     }
 
     private void initViews() {
