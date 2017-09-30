@@ -50,7 +50,7 @@ public class UserCreator extends AppCompatActivity {
         user1.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(UserCreator.this, "success", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserCreator.this, "success --> response code: "+response.code(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -60,25 +60,6 @@ public class UserCreator extends AppCompatActivity {
                 System.out.println(t.getLocalizedMessage());
             }
         });
-//        getContacts.enqueue(new Callback<List<User>>() {
-//            @Override
-//            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-//                List<User> contacts = response.body();
-//                // ContactAdapter adapter = new ContactAdapter(MainActivity.this, contacts);
-//                // recyclerView.setAdapter(adapter);
-//                Toast.makeText(GetUser.this, "Success", Toast.LENGTH_SHORT).show();
-//                int size = contacts.size();
-//                Toast.makeText(GetUser.this, "Size of the received list : "+ size, Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<User>> call, Throwable t) {
-//                Toast.makeText(GetUser.this, "Unfortunately there's a failure with your call: "+call.toString()+"\n the excpetion detail bewlow : \n"+
-//                        t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-//                System.out.println(call.toString());
-//                System.out.println(t.getLocalizedMessage());
-//            }
-//        });
     }
 
     private void initViews() {

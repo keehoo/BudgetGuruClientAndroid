@@ -8,7 +8,8 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button createUserButton;
+    private Button createUserButton;
+    private Button createBudgetEntryButton;
 
 
     @Override
@@ -23,9 +24,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, UserCreator.class));
             }
         });
+
+        createBudgetEntryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, BudgetEntry.class));
+            }
+        });
     }
 
     private void initButtons() {
         createUserButton = (Button) findViewById(R.id.create_new_user);
+        createBudgetEntryButton = (Button) findViewById(R.id.create_budget_entry);
     }
 }

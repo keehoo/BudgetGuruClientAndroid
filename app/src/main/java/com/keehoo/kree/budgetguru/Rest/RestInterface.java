@@ -1,5 +1,6 @@
 package com.keehoo.kree.budgetguru.Rest;
 
+import com.keehoo.kree.budgetguru.BudgetEntryModel;
 import com.keehoo.kree.budgetguru.User;
 
 import java.util.List;
@@ -28,4 +29,7 @@ public interface RestInterface {
 
     @POST("users/addUser")
     Call<Void> createUser(@Body User user);
+
+    @POST("budget/add")
+    Call<Void> addBudget(@Body BudgetEntryModel budgetEntry);
 }

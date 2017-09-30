@@ -18,7 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".UserCreator" />
-        <activity android:name=".Rest.GetUser"></activity>
+        <activity android:name=".Rest.GetUser" />
+        <activity android:name=".BudgetEntry"></activity>
     </application>
 
 </manifest>
