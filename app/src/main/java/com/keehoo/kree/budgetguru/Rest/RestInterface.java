@@ -26,7 +26,6 @@ public interface RestInterface {
     @GET("users/allUsers")
     Call<List<User>> listUsers();
 
-
     @POST("users/addUser")
     Call<Void> createUser(@Body User user);
 

@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Login"
+        android:hint="Login"
         tools:layout_editor_absoluteX="36dp"
         tools:layout_editor_absoluteY="35dp" />
 
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:hint="First Name"
         tools:layout_editor_absoluteX="36dp"
         tools:layout_editor_absoluteY="101dp" />
 
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Last Name"
+        android:hint="Last Name"
         tools:layout_editor_absoluteX="36dp"
         tools:layout_editor_absoluteY="177dp" />
 
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="email"
+        android:hint="email"
         tools:layout_editor_absoluteX="36dp"
         tools:layout_editor_absoluteY="265dp" />
 
