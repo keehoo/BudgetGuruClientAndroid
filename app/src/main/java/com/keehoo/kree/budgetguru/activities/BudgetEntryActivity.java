@@ -2,6 +2,7 @@ package com.keehoo.kree.budgetguru.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -34,12 +35,14 @@ public class BudgetEntryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_budget_entry);
         ButterKnife.bind(this);
+        userId.setVisibility(View.GONE);
     }
         @OnClick(R.id.add)
         protected void addNewBudgetEntry() {
 
                 BudgetEntryModel budgetEntry = new BudgetEntryModel();
-                budgetEntry.setBudgetItem(new BudgetItem(new BigDecimal(1000.0)));
+                Double price = Double.parseDouble(cost.getText().toString());
+                budgetEntry.setBudgetItem(new BudgetItem(new BigDecimal(price)));
                 budgetEntry.setUser(1);
 
                 RestInterface restInterface = RestInterface.retrofit.create(RestInterface.class);
