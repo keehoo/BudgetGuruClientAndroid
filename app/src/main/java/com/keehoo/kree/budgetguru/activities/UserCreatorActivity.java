@@ -1,4 +1,4 @@
-package com.keehoo.kree.budgetguru;
+package com.keehoo.kree.budgetguru.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,7 +6,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.keehoo.kree.budgetguru.Rest.RestInterface;
+import com.keehoo.kree.budgetguru.R;
+import com.keehoo.kree.budgetguru.rest.RestInterface;
+import com.keehoo.kree.budgetguru.data_models.User;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

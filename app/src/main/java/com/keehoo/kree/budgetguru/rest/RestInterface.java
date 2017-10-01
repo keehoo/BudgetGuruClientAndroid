@@ -1,7 +1,7 @@
-package com.keehoo.kree.budgetguru.Rest;
+package com.keehoo.kree.budgetguru.rest;
 
-import com.keehoo.kree.budgetguru.BudgetEntryModel;
-import com.keehoo.kree.budgetguru.User;
+import com.keehoo.kree.budgetguru.data_models.BudgetEntryModel;
+import com.keehoo.kree.budgetguru.data_models.User;
 
 import java.util.List;
 

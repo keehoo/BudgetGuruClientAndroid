@@ -1,9 +1,11 @@
-package com.keehoo.kree.budgetguru;
+package com.keehoo.kree.budgetguru.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
+
+import com.keehoo.kree.budgetguru.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.create_budget_entry)
      void startNewBudgetEntryActivity() {
-        startActivity(new Intent(MainActivity.this, BudgetEntry.class));
+        startActivity(new Intent(MainActivity.this, BudgetEntryActivity.class));
     }
-
-  ///
 }

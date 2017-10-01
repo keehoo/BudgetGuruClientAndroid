@@ -1,4 +1,4 @@
-package com.keehoo.kree.budgetguru;
+package com.keehoo.kree.budgetguru.data_models;
 
 import java.util.Objects;
 

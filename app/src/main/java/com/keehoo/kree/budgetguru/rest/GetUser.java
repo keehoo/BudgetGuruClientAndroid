@@ -1,11 +1,11 @@
-package com.keehoo.kree.budgetguru.Rest;
+package com.keehoo.kree.budgetguru.rest;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.keehoo.kree.budgetguru.R;
-import com.keehoo.kree.budgetguru.User;
+import com.keehoo.kree.budgetguru.data_models.User;
 
 import java.util.List;
 

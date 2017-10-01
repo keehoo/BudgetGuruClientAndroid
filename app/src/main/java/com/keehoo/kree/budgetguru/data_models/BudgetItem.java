@@ -1,4 +1,4 @@
-package com.keehoo.kree.budgetguru;
+package com.keehoo.kree.budgetguru.data_models;
 
 /**
  * Created by krzysztof on 30.09.2017.
