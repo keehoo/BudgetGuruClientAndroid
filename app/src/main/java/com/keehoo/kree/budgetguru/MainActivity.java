@@ -21,26 +21,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        //initButtons();
 
-
-    /*    createUserButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, UserCreator.class));
-            }
-        });*/
-
-    /*    createBudgetEntryButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, BudgetEntry.class));
-            }
-        });*/
     }
     @OnClick(R.id.create_new_user)
      void startNewUserActivity() {
-        startActivity(new Intent(MainActivity.this, UserCreator.class));
+        startActivity(new Intent(MainActivity.this, UserCreatorActivity.class));
     }
 
     @OnClick(R.id.create_budget_entry)

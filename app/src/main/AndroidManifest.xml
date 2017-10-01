@@ -17,7 +17,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UserCreator" />
+        <activity android:name=".UserCreatorActivity" />
         <activity android:name=".Rest.GetUser" />
         <activity android:name=".BudgetEntry"></activity>
     </application>
