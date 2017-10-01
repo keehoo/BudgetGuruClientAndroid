@@ -22,6 +22,10 @@ public class GetUser extends AppCompatActivity {
         setContentView(R.layout.activity_get_user);
     }
 
+    /**
+     * This class is now only for reference purposes
+     * FIXME: Delete this class before putting into production
+     */
     @Override
     protected void onResume() {
         super.onResume();
