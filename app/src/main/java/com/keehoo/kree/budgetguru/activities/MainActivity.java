@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
     Button createUserButton;
     @BindView(R.id.create_budget_entry)
     Button createBudgetEntryButton;
+    @BindView(R.id.login)
+    Button loginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
