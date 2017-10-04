@@ -22,6 +22,12 @@ android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/login"
-        android:text="log in"/>
+        android:text="@string/log_in"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ocr"
+        android:text="@string/ocr"/>
 
 </LinearLayout>

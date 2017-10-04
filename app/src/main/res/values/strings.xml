@@ -3,4 +3,8 @@
     <string name="create_new_user">Create New User</string>
     <string name="add_user">Add user</string>
     <string name="new_budget_entry">New budget entry</string>
+    <string name="ocr">OCR</string>
+    <string name="log_in">log in</string>
+    <string name="camera_rationale">Access to the camera is needed for detection</string>
+    <string name="ok">OK</string>
 </resources>
