@@ -3,6 +3,7 @@ package com.keehoo.kree.budgetguru.activities;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -19,6 +20,8 @@ import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
@@ -26,6 +29,8 @@ import com.keehoo.kree.budgetguru.R;
 import com.keehoo.kree.budgetguru.activities.camera.CameraSource;
 import com.keehoo.kree.budgetguru.activities.camera.CameraSourcePreview;
 import com.keehoo.kree.budgetguru.activities.camera.GraphicOverlay;
+
+import java.io.IOException;
 
 public class OcrActivity extends AppCompatActivity {
     private static final String TAG = "OcrCaptureActivity";
@@ -76,6 +81,48 @@ public class OcrActivity extends AppCompatActivity {
                 Snackbar.LENGTH_LONG)
                 .show();
 
+    }
+
+    private void startCameraSource() throws SecurityException {
+        // Check that the device has play services available.
+        int code = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(
+                getApplicationContext());
+        if (code != ConnectionResult.SUCCESS) {
+            Dialog dlg =
+                    GoogleApiAvailability.getInstance().getErrorDialog(this, code, RC_HANDLE_GMS);
+            dlg.show();
+        }
+
+        if (mCameraSource != null) {
+            try {
+                mPreview.start(mCameraSource, mGraphicOverlay);
+            } catch (IOException e) {
+                Log.e(TAG, "Unable to start camera source.", e);
+                mCameraSource.release();
+                mCameraSource = null;
+            }
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        startCameraSource();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mPreview != null) {
+            mPreview.stop();
+        }
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mPreview != null) {
+            mPreview.release();
+        }
     }
 
     private void requestCameraPermission() {
@@ -143,7 +190,7 @@ public class OcrActivity extends AppCompatActivity {
         mCameraSource =
                 new CameraSource.Builder(getApplicationContext(), textRecognizer)
                         .setFacing(CameraSource.CAMERA_FACING_BACK)
-                        .setRequestedPreviewSize(1280, 1024)
+                        .setRequestedPreviewSize(1280/2, 1024/2)
                         .setRequestedFps(2.0f)
                         .setFlashMode(useFlash ? Camera.Parameters.FLASH_MODE_TORCH : null)
                         .setFocusMode(autoFocus ? Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE : null)
