@@ -62,10 +62,10 @@ public class OcrActivity extends AppCompatActivity {
         mPreview = (CameraSourcePreview) findViewById(R.id.preview);
         mGraphicOverlay = (GraphicOverlay<OcrGraphic>) findViewById(R.id.graphicOverlay);
 
-        boolean autoFocus = true;
-                //getIntent().getBooleanExtra(AutoFocus, false);
-        boolean useFlash =  false;
-                //getIntent().getBooleanExtra(UseFlash, false);
+        boolean autoFocus =
+                getIntent().getBooleanExtra(AutoFocus, false);
+        boolean useFlash =
+                getIntent().getBooleanExtra(UseFlash, false);
 
         int rc = ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
         if (rc == PackageManager.PERMISSION_GRANTED) {
@@ -109,7 +109,6 @@ public class OcrActivity extends AppCompatActivity {
         super.onResume();
         startCameraSource();
     }
-
     @Override
     protected void onPause() {
         super.onPause();
@@ -156,11 +155,14 @@ public class OcrActivity extends AppCompatActivity {
     private void createCameraSource(boolean autoFocus, boolean useFlash) {
         Context context = getApplicationContext();
 
+
+
         // A text recognizer is created to find text.  An associated processor instance
         // is set to receive the text recognition results and display graphics for each text block
         // on screen.
         TextRecognizer textRecognizer = new TextRecognizer.Builder(context).build();
         textRecognizer.setProcessor(new OcrDetectorProcessor(mGraphicOverlay));
+
 
         if (!textRecognizer.isOperational()) {
             // Note: The first time that an app using a Vision API is installed on a
@@ -190,19 +192,31 @@ public class OcrActivity extends AppCompatActivity {
         mCameraSource =
                 new CameraSource.Builder(getApplicationContext(), textRecognizer)
                         .setFacing(CameraSource.CAMERA_FACING_BACK)
-                        .setRequestedPreviewSize(1280/2, 1024/2)
+                        .setRequestedPreviewSize(1280, 1024)
                         .setRequestedFps(2.0f)
                         .setFlashMode(useFlash ? Camera.Parameters.FLASH_MODE_TORCH : null)
                         .setFocusMode(autoFocus ? Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE : null)
                         .build();
+
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent e) {
+        boolean b = scaleGestureDetector.onTouchEvent(e);
+
+        boolean c = gestureDetector.onTouchEvent(e);
+
+        return b || c || super.onTouchEvent(e);
     }
 
     private boolean onTap(float rawX, float rawY) {
+        Toast.makeText(this, "tap", Toast.LENGTH_SHORT).show();
         OcrGraphic graphic = mGraphicOverlay.getGraphicAtLocation(rawX, rawY);
         TextBlock text = null;
         if (graphic != null) {
             text = graphic.getTextBlock();
             if (text != null && text.getValue() != null) {
+                text.getLanguage();
                 Intent data = new Intent();
                 data.putExtra(TextBlockObject, text.getValue());
                 setResult(CommonStatusCodes.SUCCESS, data);
