@@ -6,16 +6,16 @@
     android:layout_height="match_parent"
     android:keepScreenOn="true">
 
-    <com.keehoo.kree.budgetguru.activities.camera.CameraSourcePreview
+    <com.keehoo.kree.budgetguru.camera.CameraSourcePreview
         android:id="@+id/preview"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.keehoo.kree.budgetguru.activities.camera.GraphicOverlay
+        <com.keehoo.kree.budgetguru.camera.GraphicOverlay
             android:id="@+id/graphicOverlay"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-    </com.keehoo.kree.budgetguru.activities.camera.CameraSourcePreview>
+    </com.keehoo.kree.budgetguru.camera.CameraSourcePreview>
 
 </LinearLayout>

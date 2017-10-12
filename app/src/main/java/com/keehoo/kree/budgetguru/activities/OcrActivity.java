@@ -25,9 +25,11 @@ import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.text.TextRecognizer;
 import com.keehoo.kree.budgetguru.R;
-import com.keehoo.kree.budgetguru.activities.camera.CameraSource;
-import com.keehoo.kree.budgetguru.activities.camera.CameraSourcePreview;
-import com.keehoo.kree.budgetguru.activities.camera.GraphicOverlay;
+import com.keehoo.kree.budgetguru.camera.CameraSource;
+import com.keehoo.kree.budgetguru.camera.CameraSourcePreview;
+import com.keehoo.kree.budgetguru.camera.GraphicOverlay;
+import com.keehoo.kree.budgetguru.ocr.OcrDetectorProcessor;
+import com.keehoo.kree.budgetguru.ocr.OcrGraphic;
 
 import java.io.IOException;
 import java.util.ArrayList;
