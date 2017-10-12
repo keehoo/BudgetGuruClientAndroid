@@ -23,7 +23,6 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.CommonStatusCodes;
-import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 import com.keehoo.kree.budgetguru.R;
 import com.keehoo.kree.budgetguru.activities.camera.CameraSource;
@@ -31,6 +30,8 @@ import com.keehoo.kree.budgetguru.activities.camera.CameraSourcePreview;
 import com.keehoo.kree.budgetguru.activities.camera.GraphicOverlay;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Set;
 
 public class OcrActivity extends AppCompatActivity {
     private static final String TAG = "OcrCaptureActivity";
@@ -109,6 +110,7 @@ public class OcrActivity extends AppCompatActivity {
         super.onResume();
         startCameraSource();
     }
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -116,6 +118,7 @@ public class OcrActivity extends AppCompatActivity {
             mPreview.stop();
         }
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -154,7 +157,6 @@ public class OcrActivity extends AppCompatActivity {
     @SuppressLint("InlinedApi")
     private void createCameraSource(boolean autoFocus, boolean useFlash) {
         Context context = getApplicationContext();
-
 
 
         // A text recognizer is created to find text.  An associated processor instance
@@ -211,7 +213,21 @@ public class OcrActivity extends AppCompatActivity {
 
     private boolean onTap(float rawX, float rawY) {
         Toast.makeText(this, "tap", Toast.LENGTH_SHORT).show();
-        OcrGraphic graphic = mGraphicOverlay.getGraphicAtLocation(rawX, rawY);
+        ArrayList<String> textList = new ArrayList<>();
+
+        Set<OcrGraphic> allGraphics = mGraphicOverlay.getAllGraphics();
+        if (!allGraphics.isEmpty()) {
+            for (OcrGraphic graphic : allGraphics) {
+                textList.add(graphic.getTextBlock().getValue());
+            }
+            Intent data = new Intent();
+            data.putStringArrayListExtra("ocred_text", textList);
+            setResult(CommonStatusCodes.SUCCESS, data);
+            finish();
+        }
+        return true;
+
+    /*    OcrGraphic graphic = mGraphicOverlay.getGraphicAtLocation(rawX, rawY);
         TextBlock text = null;
         if (graphic != null) {
             text = graphic.getTextBlock();
@@ -229,9 +245,8 @@ public class OcrActivity extends AppCompatActivity {
         else {
             Log.d(TAG,"no text detected");
         }
-        return text != null;
+        return text != null;*/
     }
-
 
     ////CLASSES
 
