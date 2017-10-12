@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/build/intermediates/res/merged/debug/layout-v11/notification_template_big_media_narrow.xml",
+        "source": "/home/krzysztof/.android/build-cache/4d3f6e0cfccdf0509f1dce8768956af150bf6831/output/res/layout-v11/notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "/home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/build/intermediates/res/merged/debug/layout-v11/notification_media_action.xml",
+        "source": "/home/krzysztof/.android/build-cache/4d3f6e0cfccdf0509f1dce8768956af150bf6831/output/res/layout-v11/notification_media_action.xml"
+    },
+    {
+        "merged": "/home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/build/intermediates/res/merged/debug/layout-v11/notification_template_big_media_narrow_custom.xml",
+        "source": "/home/krzysztof/.android/build-cache/4d3f6e0cfccdf0509f1dce8768956af150bf6831/output/res/layout-v11/notification_template_big_media_narrow_custom.xml"
+    },
+    {
+        "merged": "/home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/build/intermediates/res/merged/debug/layout-v11/notification_template_big_media_custom.xml",
+        "source": "/home/krzysztof/.android/build-cache/4d3f6e0cfccdf0509f1dce8768956af150bf6831/output/res/layout-v11/notification_template_big_media_custom.xml"
+    },
+    {
+        "merged": "/home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/build/intermediates/res/merged/debug/layout-v11/notification_media_cancel_action.xml",
+        "source": "/home/krzysztof/.android/build-cache/4d3f6e0cfccdf0509f1dce8768956af150bf6831/output/res/layout-v11/notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "/home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/build/intermediates/res/merged/debug/layout-v11/notification_template_big_media.xml",
+        "source": "/home/krzysztof/.android/build-cache/4d3f6e0cfccdf0509f1dce8768956af150bf6831/output/res/layout-v11/notification_template_big_media.xml"
+    }
+]

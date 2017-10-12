@@ -1,0 +1,314 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:2:1-38:12
+	package
+		ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:3:5-41
+		INJECTED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml
+		INJECTED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml
+		INJECTED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:2:11-69
+	android:versionCode
+		INJECTED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml
+		INJECTED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml
+	android:installLocation
+		ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:4:5-35
+uses-feature#android.hardware.camera
+ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:6:5-60
+	android:name
+		ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:6:19-57
+uses-permission#android.permission.CAMERA
+ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:8:5-65
+	android:name
+		ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:8:22-62
+uses-permission#android.permission.INTERNET
+ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:9:5-67
+MERGED from [com.google.firebase:firebase-analytics:11.0.4] /home/krzysztof/.android/build-cache/ef904c63c3daa75d76503b8358b6a936b221323f/output/AndroidManifest.xml:20:5-66
+MERGED from [com.google.firebase:firebase-analytics-impl:11.0.4] /home/krzysztof/.android/build-cache/e353fdd6f4ca458450346b7f5c200f5c2c92043c/output/AndroidManifest.xml:20:5-66
+MERGED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:20:5-66
+	android:name
+		ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:9:22-64
+application
+ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:11:5-36:19
+MERGED from [com.google.android.gms:play-services-auth:11.0.4] /home/krzysztof/.android/build-cache/acdfb07987e8852068263313ef0975a49409ac16/output/AndroidManifest.xml:19:5-25:19
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /home/krzysztof/.android/build-cache/36c891cdd9081df92fb0b5366236176baa4191da/output/AndroidManifest.xml:9:5-20
+MERGED from [com.google.android.gms:play-services-vision:11.0.4] /home/krzysztof/.android/build-cache/e5d4ef24f1bbec4b21c13804a01c51c36593ac7d/output/AndroidManifest.xml:4:5-19
+MERGED from [com.google.android.gms:play-services-vision-common:11.0.4] /home/krzysztof/.android/build-cache/881206916e4632acdcc6d7fbf90f409111e83b0f/output/AndroidManifest.xml:4:5-19
+MERGED from [com.google.android.gms:play-services-base:11.0.4] /home/krzysztof/.android/build-cache/cca1b0c844eee77fb2b8d1098aa217b33e90020f/output/AndroidManifest.xml:18:5-20:19
+MERGED from [com.android.support:design:25.3.1] /home/krzysztof/.android/build-cache/ce0352d22410cc38d9c2fcf69cbd8d09d25d38bc/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:appcompat-v7:25.3.1] /home/krzysztof/.android/build-cache/4d3f6e0cfccdf0509f1dce8768956af150bf6831/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /home/krzysztof/.android/build-cache/3794de4742c31189a594965bc2fca13724a3f3eb/output/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /home/krzysztof/.android/build-cache/16571481a7a5eb8a7e74000b5c7305671381be64/output/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:transition:25.3.1] /home/krzysztof/.android/build-cache/fb37e8e2c1447a212e32863f92e07ce738027721/output/AndroidManifest.xml:26:5-20
+MERGED from [com.google.firebase:firebase-core:11.0.4] /home/krzysztof/.android/build-cache/11b000c2d654a5dc608268df755c810ed0ac77bc/output/AndroidManifest.xml:5:5-20
+MERGED from [com.google.firebase:firebase-analytics:11.0.4] /home/krzysztof/.android/build-cache/ef904c63c3daa75d76503b8358b6a936b221323f/output/AndroidManifest.xml:24:5-34:19
+MERGED from [com.google.firebase:firebase-analytics-impl:11.0.4] /home/krzysztof/.android/build-cache/e353fdd6f4ca458450346b7f5c200f5c2c92043c/output/AndroidManifest.xml:24:5-28:19
+MERGED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:28:5-49:19
+MERGED from [com.google.firebase:firebase-common:11.0.4] /home/krzysztof/.android/build-cache/717fbf6ce13f365b80aba5ac9512b00d953e5285/output/AndroidManifest.xml:4:5-7:19
+MERGED from [com.google.android.gms:play-services-tasks:11.0.4] /home/krzysztof/.android/build-cache/f94cccb29148dc997e96265f8f4a8f2573c26208/output/AndroidManifest.xml:4:5-19
+MERGED from [com.google.android.gms:play-services-basement:11.0.4] /home/krzysztof/.android/build-cache/b86eb499f3316832b7b6a468fae6c21be9ab43a1/output/AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:25.3.1] /home/krzysztof/.android/build-cache/e68cab4a46b138647395c186c22b0c4ec4774026/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:25.3.1] /home/krzysztof/.android/build-cache/3d5b1adb4129dbd9a555de1a9df71b7eb474963c/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:25.3.1] /home/krzysztof/.android/build-cache/9e1d342a14040b4daafc77183cf2669fa935b7dd/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:25.3.1] /home/krzysztof/.android/build-cache/afbc116dde23e7284aaac072dc11068efccbfc07/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:25.3.1] /home/krzysztof/.android/build-cache/184dd6a57661eac542ef3ec547444768bdc9e8a8/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-compat:25.3.1] /home/krzysztof/.android/build-cache/7e5e06f08fe7c8b3b9a1f667a8dccbf2d2f2c36a/output/AndroidManifest.xml:29:5-20
+	android:label
+		ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:15:9-41
+	android:supportsRtl
+		ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:16:9-35
+	android:hardwareAccelerated
+		ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:13:9-43
+	android:allowBackup
+		ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:12:9-35
+	android:icon
+		ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:14:9-43
+	android:theme
+		ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:17:9-40
+meta-data#com.google.android.gms.vision.DEPENDENCIES
+ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:18:9-20:35
+	android:value
+		ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:20:13-32
+	android:name
+		ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:19:13-70
+activity#com.keehoo.kree.budgetguru.activities.MainActivity
+ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:22:9-28:20
+	android:name
+		ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:22:19-58
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:23:13-27:29
+action#android.intent.action.MAIN
+ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:24:17-69
+	android:name
+		ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:24:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:26:17-77
+	android:name
+		ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:26:27-74
+activity#com.keehoo.kree.budgetguru.activities.UserCreatorActivity
+ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:29:9-68
+	android:name
+		ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:29:19-65
+activity#com.keehoo.kree.budgetguru.rest.GetUser
+ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:30:9-50
+	android:name
+		ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:30:19-47
+activity#com.keehoo.kree.budgetguru.activities.BudgetEntryActivity
+ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:31:9-68
+	android:name
+		ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:31:19-65
+activity#com.keehoo.kree.budgetguru.activities.OcrActivity
+ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:32:9-34:41
+	android:label
+		ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:34:13-38
+	android:name
+		ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:33:13-51
+activity#com.keehoo.kree.budgetguru.activities.OcrResultAnalysisActivity
+ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:35:9-83
+	android:name
+		ADDED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml:35:19-71
+uses-sdk
+INJECTED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.google.android.gms:play-services-auth:11.0.4] /home/krzysztof/.android/build-cache/acdfb07987e8852068263313ef0975a49409ac16/output/AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-auth-base:11.0.4] /home/krzysztof/.android/build-cache/16e5fa94d8c2141f27f0148208459abd0edc0a19/output/AndroidManifest.xml:4:5-43
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /home/krzysztof/.android/build-cache/36c891cdd9081df92fb0b5366236176baa4191da/output/AndroidManifest.xml:5:5-7:41
+MERGED from [com.jakewharton:butterknife:8.8.1] /home/krzysztof/.android/build-cache/beaa5e00a463629ce8b01db40116cb73e02593c2/output/AndroidManifest.xml:5:5-43
+MERGED from [com.google.android.gms:play-services-vision:11.0.4] /home/krzysztof/.android/build-cache/e5d4ef24f1bbec4b21c13804a01c51c36593ac7d/output/AndroidManifest.xml:3:5-43
+MERGED from [com.google.android.gms:play-services-vision-common:11.0.4] /home/krzysztof/.android/build-cache/881206916e4632acdcc6d7fbf90f409111e83b0f/output/AndroidManifest.xml:3:5-43
+MERGED from [com.google.android.gms:play-services-base:11.0.4] /home/krzysztof/.android/build-cache/cca1b0c844eee77fb2b8d1098aa217b33e90020f/output/AndroidManifest.xml:17:5-43
+MERGED from [com.android.support:design:25.3.1] /home/krzysztof/.android/build-cache/ce0352d22410cc38d9c2fcf69cbd8d09d25d38bc/output/AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:appcompat-v7:25.3.1] /home/krzysztof/.android/build-cache/4d3f6e0cfccdf0509f1dce8768956af150bf6831/output/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /home/krzysztof/.android/build-cache/3794de4742c31189a594965bc2fca13724a3f3eb/output/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /home/krzysztof/.android/build-cache/16571481a7a5eb8a7e74000b5c7305671381be64/output/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:25.3.1] /home/krzysztof/.android/build-cache/e5cc79de6c04733520ad9b937a78f2809e5dd431/output/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:transition:25.3.1] /home/krzysztof/.android/build-cache/fb37e8e2c1447a212e32863f92e07ce738027721/output/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-core:11.0.4] /home/krzysztof/.android/build-cache/11b000c2d654a5dc608268df755c810ed0ac77bc/output/AndroidManifest.xml:4:5-43
+MERGED from [com.google.firebase:firebase-analytics:11.0.4] /home/krzysztof/.android/build-cache/ef904c63c3daa75d76503b8358b6a936b221323f/output/AndroidManifest.xml:17:5-43
+MERGED from [com.google.firebase:firebase-analytics-impl:11.0.4] /home/krzysztof/.android/build-cache/e353fdd6f4ca458450346b7f5c200f5c2c92043c/output/AndroidManifest.xml:17:5-43
+MERGED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:17:5-43
+MERGED from [com.google.firebase:firebase-common:11.0.4] /home/krzysztof/.android/build-cache/717fbf6ce13f365b80aba5ac9512b00d953e5285/output/AndroidManifest.xml:3:5-43
+MERGED from [com.google.android.gms:play-services-tasks:11.0.4] /home/krzysztof/.android/build-cache/f94cccb29148dc997e96265f8f4a8f2573c26208/output/AndroidManifest.xml:3:5-43
+MERGED from [com.google.android.gms:play-services-basement:11.0.4] /home/krzysztof/.android/build-cache/b86eb499f3316832b7b6a468fae6c21be9ab43a1/output/AndroidManifest.xml:17:5-43
+MERGED from [com.android.support:support-v4:25.3.1] /home/krzysztof/.android/build-cache/e68cab4a46b138647395c186c22b0c4ec4774026/output/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.3.1] /home/krzysztof/.android/build-cache/3d5b1adb4129dbd9a555de1a9df71b7eb474963c/output/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.3.1] /home/krzysztof/.android/build-cache/9e1d342a14040b4daafc77183cf2669fa935b7dd/output/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-ui:25.3.1] /home/krzysztof/.android/build-cache/afbc116dde23e7284aaac072dc11068efccbfc07/output/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:25.3.1] /home/krzysztof/.android/build-cache/184dd6a57661eac542ef3ec547444768bdc9e8a8/output/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-compat:25.3.1] /home/krzysztof/.android/build-cache/7e5e06f08fe7c8b3b9a1f667a8dccbf2d2f2c36a/output/AndroidManifest.xml:21:5-23:58
+	tools:overrideLibrary
+		ADDED from [com.android.support:design:25.3.1] /home/krzysztof/.android/build-cache/ce0352d22410cc38d9c2fcf69cbd8d09d25d38bc/output/AndroidManifest.xml:23:9-59
+	android:targetSdkVersion
+		INJECTED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml
+		INJECTED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml
+		INJECTED from /home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/AndroidManifest.xml
+activity#com.google.android.gms.auth.api.signin.internal.SignInHubActivity
+ADDED from [com.google.android.gms:play-services-auth:11.0.4] /home/krzysztof/.android/build-cache/acdfb07987e8852068263313ef0975a49409ac16/output/AndroidManifest.xml:20:9-189
+	android:excludeFromRecents
+		ADDED from [com.google.android.gms:play-services-auth:11.0.4] /home/krzysztof/.android/build-cache/acdfb07987e8852068263313ef0975a49409ac16/output/AndroidManifest.xml:20:129-162
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:11.0.4] /home/krzysztof/.android/build-cache/acdfb07987e8852068263313ef0975a49409ac16/output/AndroidManifest.xml:20:163-187
+	android:theme
+		ADDED from [com.google.android.gms:play-services-auth:11.0.4] /home/krzysztof/.android/build-cache/acdfb07987e8852068263313ef0975a49409ac16/output/AndroidManifest.xml:20:69-128
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:11.0.4] /home/krzysztof/.android/build-cache/acdfb07987e8852068263313ef0975a49409ac16/output/AndroidManifest.xml:20:19-68
+service#com.google.android.gms.auth.api.signin.RevocationBoundService
+ADDED from [com.google.android.gms:play-services-auth:11.0.4] /home/krzysztof/.android/build-cache/acdfb07987e8852068263313ef0975a49409ac16/output/AndroidManifest.xml:24:9-184
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:11.0.4] /home/krzysztof/.android/build-cache/acdfb07987e8852068263313ef0975a49409ac16/output/AndroidManifest.xml:24:64-87
+	android:permission
+		ADDED from [com.google.android.gms:play-services-auth:11.0.4] /home/krzysztof/.android/build-cache/acdfb07987e8852068263313ef0975a49409ac16/output/AndroidManifest.xml:24:88-182
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:11.0.4] /home/krzysztof/.android/build-cache/acdfb07987e8852068263313ef0975a49409ac16/output/AndroidManifest.xml:24:18-63
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:11.0.4] /home/krzysztof/.android/build-cache/cca1b0c844eee77fb2b8d1098aa217b33e90020f/output/AndroidManifest.xml:19:9-172
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:11.0.4] /home/krzysztof/.android/build-cache/cca1b0c844eee77fb2b8d1098aa217b33e90020f/output/AndroidManifest.xml:19:146-170
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:11.0.4] /home/krzysztof/.android/build-cache/cca1b0c844eee77fb2b8d1098aa217b33e90020f/output/AndroidManifest.xml:19:86-145
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:11.0.4] /home/krzysztof/.android/build-cache/cca1b0c844eee77fb2b8d1098aa217b33e90020f/output/AndroidManifest.xml:19:19-85
+meta-data#android.support.VERSION
+ADDED from [com.android.support:design:25.3.1] /home/krzysztof/.android/build-cache/ce0352d22410cc38d9c2fcf69cbd8d09d25d38bc/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:appcompat-v7:25.3.1] /home/krzysztof/.android/build-cache/4d3f6e0cfccdf0509f1dce8768956af150bf6831/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /home/krzysztof/.android/build-cache/3794de4742c31189a594965bc2fca13724a3f3eb/output/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /home/krzysztof/.android/build-cache/16571481a7a5eb8a7e74000b5c7305671381be64/output/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:recyclerview-v7:25.3.1] /home/krzysztof/.android/build-cache/e5cc79de6c04733520ad9b937a78f2809e5dd431/output/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:transition:25.3.1] /home/krzysztof/.android/build-cache/fb37e8e2c1447a212e32863f92e07ce738027721/output/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-v4:25.3.1] /home/krzysztof/.android/build-cache/e68cab4a46b138647395c186c22b0c4ec4774026/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-fragment:25.3.1] /home/krzysztof/.android/build-cache/3d5b1adb4129dbd9a555de1a9df71b7eb474963c/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-media-compat:25.3.1] /home/krzysztof/.android/build-cache/9e1d342a14040b4daafc77183cf2669fa935b7dd/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-ui:25.3.1] /home/krzysztof/.android/build-cache/afbc116dde23e7284aaac072dc11068efccbfc07/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-utils:25.3.1] /home/krzysztof/.android/build-cache/184dd6a57661eac542ef3ec547444768bdc9e8a8/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-compat:25.3.1] /home/krzysztof/.android/build-cache/7e5e06f08fe7c8b3b9a1f667a8dccbf2d2f2c36a/output/AndroidManifest.xml:25:5-27:34
+	android:value
+		ADDED from [com.android.support:design:25.3.1] /home/krzysztof/.android/build-cache/ce0352d22410cc38d9c2fcf69cbd8d09d25d38bc/output/AndroidManifest.xml:27:9-31
+	android:name
+		ADDED from [com.android.support:design:25.3.1] /home/krzysztof/.android/build-cache/ce0352d22410cc38d9c2fcf69cbd8d09d25d38bc/output/AndroidManifest.xml:26:9-47
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [com.google.firebase:firebase-analytics:11.0.4] /home/krzysztof/.android/build-cache/ef904c63c3daa75d76503b8358b6a936b221323f/output/AndroidManifest.xml:21:5-78
+MERGED from [com.google.firebase:firebase-analytics-impl:11.0.4] /home/krzysztof/.android/build-cache/e353fdd6f4ca458450346b7f5c200f5c2c92043c/output/AndroidManifest.xml:21:5-78
+MERGED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:19:5-78
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] /home/krzysztof/.android/build-cache/ef904c63c3daa75d76503b8358b6a936b221323f/output/AndroidManifest.xml:21:22-76
+uses-permission#android.permission.WAKE_LOCK
+ADDED from [com.google.firebase:firebase-analytics:11.0.4] /home/krzysztof/.android/build-cache/ef904c63c3daa75d76503b8358b6a936b221323f/output/AndroidManifest.xml:22:5-67
+MERGED from [com.google.firebase:firebase-analytics-impl:11.0.4] /home/krzysztof/.android/build-cache/e353fdd6f4ca458450346b7f5c200f5c2c92043c/output/AndroidManifest.xml:22:5-67
+MERGED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:21:5-67
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] /home/krzysztof/.android/build-cache/ef904c63c3daa75d76503b8358b6a936b221323f/output/AndroidManifest.xml:22:22-65
+receiver#com.google.android.gms.measurement.AppMeasurementReceiver
+ADDED from [com.google.firebase:firebase-analytics:11.0.4] /home/krzysztof/.android/build-cache/ef904c63c3daa75d76503b8358b6a936b221323f/output/AndroidManifest.xml:25:7-26:18
+MERGED from [com.google.firebase:firebase-analytics-impl:11.0.4] /home/krzysztof/.android/build-cache/e353fdd6f4ca458450346b7f5c200f5c2c92043c/output/AndroidManifest.xml:25:7-26:18
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] /home/krzysztof/.android/build-cache/ef904c63c3daa75d76503b8358b6a936b221323f/output/AndroidManifest.xml:25:90-112
+	android:exported
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] /home/krzysztof/.android/build-cache/ef904c63c3daa75d76503b8358b6a936b221323f/output/AndroidManifest.xml:25:113-137
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] /home/krzysztof/.android/build-cache/ef904c63c3daa75d76503b8358b6a936b221323f/output/AndroidManifest.xml:25:17-89
+receiver#com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver
+ADDED from [com.google.firebase:firebase-analytics:11.0.4] /home/krzysztof/.android/build-cache/ef904c63c3daa75d76503b8358b6a936b221323f/output/AndroidManifest.xml:27:7-31:18
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] /home/krzysztof/.android/build-cache/ef904c63c3daa75d76503b8358b6a936b221323f/output/AndroidManifest.xml:27:162-184
+	android:exported
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] /home/krzysztof/.android/build-cache/ef904c63c3daa75d76503b8358b6a936b221323f/output/AndroidManifest.xml:27:185-208
+	android:permission
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] /home/krzysztof/.android/build-cache/ef904c63c3daa75d76503b8358b6a936b221323f/output/AndroidManifest.xml:27:105-161
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] /home/krzysztof/.android/build-cache/ef904c63c3daa75d76503b8358b6a936b221323f/output/AndroidManifest.xml:27:17-104
+intent-filter#com.android.vending.INSTALL_REFERRER
+ADDED from [com.google.firebase:firebase-analytics:11.0.4] /home/krzysztof/.android/build-cache/ef904c63c3daa75d76503b8358b6a936b221323f/output/AndroidManifest.xml:28:11-30:27
+action#com.android.vending.INSTALL_REFERRER
+ADDED from [com.google.firebase:firebase-analytics:11.0.4] /home/krzysztof/.android/build-cache/ef904c63c3daa75d76503b8358b6a936b221323f/output/AndroidManifest.xml:29:15-76
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] /home/krzysztof/.android/build-cache/ef904c63c3daa75d76503b8358b6a936b221323f/output/AndroidManifest.xml:29:23-74
+service#com.google.android.gms.measurement.AppMeasurementService
+ADDED from [com.google.firebase:firebase-analytics:11.0.4] /home/krzysztof/.android/build-cache/ef904c63c3daa75d76503b8358b6a936b221323f/output/AndroidManifest.xml:32:7-137
+MERGED from [com.google.firebase:firebase-analytics-impl:11.0.4] /home/krzysztof/.android/build-cache/e353fdd6f4ca458450346b7f5c200f5c2c92043c/output/AndroidManifest.xml:27:7-137
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] /home/krzysztof/.android/build-cache/ef904c63c3daa75d76503b8358b6a936b221323f/output/AndroidManifest.xml:32:88-110
+	android:exported
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] /home/krzysztof/.android/build-cache/ef904c63c3daa75d76503b8358b6a936b221323f/output/AndroidManifest.xml:32:111-135
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] /home/krzysztof/.android/build-cache/ef904c63c3daa75d76503b8358b6a936b221323f/output/AndroidManifest.xml:32:16-87
+service#com.google.android.gms.measurement.AppMeasurementJobService
+ADDED from [com.google.firebase:firebase-analytics:11.0.4] /home/krzysztof/.android/build-cache/ef904c63c3daa75d76503b8358b6a936b221323f/output/AndroidManifest.xml:33:7-197
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] /home/krzysztof/.android/build-cache/ef904c63c3daa75d76503b8358b6a936b221323f/output/AndroidManifest.xml:33:148-170
+	android:exported
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] /home/krzysztof/.android/build-cache/ef904c63c3daa75d76503b8358b6a936b221323f/output/AndroidManifest.xml:33:171-195
+	android:permission
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] /home/krzysztof/.android/build-cache/ef904c63c3daa75d76503b8358b6a936b221323f/output/AndroidManifest.xml:33:91-147
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] /home/krzysztof/.android/build-cache/ef904c63c3daa75d76503b8358b6a936b221323f/output/AndroidManifest.xml:33:16-90
+uses-permission#com.google.android.c2dm.permission.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:22:5-81
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:22:22-79
+permission#${applicationId}.permission.C2D_MESSAGE
+ADDED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:24:5-109
+	android:protectionLevel
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:24:72-107
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:24:17-71
+uses-permission#${applicationId}.permission.C2D_MESSAGE
+ADDED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:26:5-78
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:26:22-76
+receiver#com.google.firebase.iid.FirebaseInstanceIdReceiver
+ADDED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:30:9-35:20
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:30:85-108
+	android:permission
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:30:109-169
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:30:19-84
+intent-filter#${applicationId}+com.google.android.c2dm.intent.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:31:13-34:29
+action#com.google.android.c2dm.intent.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:32:17-80
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:32:25-78
+category#${applicationId}
+ADDED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:33:17-60
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:33:27-58
+receiver#com.google.firebase.iid.FirebaseInstanceIdInternalReceiver
+ADDED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:39:9-119
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:39:93-117
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:39:19-92
+service#com.google.firebase.iid.FirebaseInstanceIdService
+ADDED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:43:9-47:19
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:43:83-106
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:43:18-82
+intent-filter#com.google.firebase.INSTANCE_ID_EVENT
+ADDED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:44:13-46:29
+	android:priority
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:44:28-51
+action#com.google.firebase.INSTANCE_ID_EVENT
+ADDED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:45:17-79
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] /home/krzysztof/.android/build-cache/828360d7c8b86faee60cdcf56c787e07c230860a/output/AndroidManifest.xml:45:25-77
+provider#com.google.firebase.provider.FirebaseInitProvider
+ADDED from [com.google.firebase:firebase-common:11.0.4] /home/krzysztof/.android/build-cache/717fbf6ce13f365b80aba5ac9512b00d953e5285/output/AndroidManifest.xml:6:9-194
+	android:authorities
+		ADDED from [com.google.firebase:firebase-common:11.0.4] /home/krzysztof/.android/build-cache/717fbf6ce13f365b80aba5ac9512b00d953e5285/output/AndroidManifest.xml:6:19-78
+	android:exported
+		ADDED from [com.google.firebase:firebase-common:11.0.4] /home/krzysztof/.android/build-cache/717fbf6ce13f365b80aba5ac9512b00d953e5285/output/AndroidManifest.xml:6:144-168
+	android:initOrder
+		ADDED from [com.google.firebase:firebase-common:11.0.4] /home/krzysztof/.android/build-cache/717fbf6ce13f365b80aba5ac9512b00d953e5285/output/AndroidManifest.xml:6:169-192
+	android:name
+		ADDED from [com.google.firebase:firebase-common:11.0.4] /home/krzysztof/.android/build-cache/717fbf6ce13f365b80aba5ac9512b00d953e5285/output/AndroidManifest.xml:6:79-143
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:11.0.4] /home/krzysztof/.android/build-cache/b86eb499f3316832b7b6a468fae6c21be9ab43a1/output/AndroidManifest.xml:20:9-121
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:11.0.4] /home/krzysztof/.android/build-cache/b86eb499f3316832b7b6a468fae6c21be9ab43a1/output/AndroidManifest.xml:20:66-119
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:11.0.4] /home/krzysztof/.android/build-cache/b86eb499f3316832b7b6a468fae6c21be9ab43a1/output/AndroidManifest.xml:20:20-65

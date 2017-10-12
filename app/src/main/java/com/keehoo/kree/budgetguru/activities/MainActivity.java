@@ -69,6 +69,9 @@ public class MainActivity extends AppCompatActivity {
                    // textValue.setText(text);
                    // Log.d(TAG, "Text read: " + text);
                    // Toast.makeText(this, "text : "+text, Toast.LENGTH_LONG).show();
+                    Intent intentWithResults = new Intent(this, OcrResultAnalysisActivity.class);
+                    intentWithResults.putStringArrayListExtra("ocr_results", result);
+                    startActivity(intentWithResults);
                 } else {
                     //  statusMessage.setText(R.string.ocr_failure);
                     //  Log.d(TAG, "No Text captured, intent data is null");

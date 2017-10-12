@@ -1,0 +1,7 @@
+#Thu Oct 12 12:12:12 CEST 2017
+base.0=/home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_58a5b02547bc1ca59fc5c925b511240398458f75
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=/home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_d7c88ab09724e4fce00d5f2b8ce2f0564fc021f5/classes.dex
+base.1=/home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_d7c88ab09724e4fce00d5f2b8ce2f0564fc021f5
+file.0=/home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_58a5b02547bc1ca59fc5c925b511240398458f75/classes.dex

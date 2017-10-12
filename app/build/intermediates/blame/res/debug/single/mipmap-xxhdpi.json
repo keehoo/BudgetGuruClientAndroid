@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/build/intermediates/res/merged/debug/mipmap-xxhdpi/ic_launcher.png",
+        "source": "/home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/build/intermediates/res/merged/debug/mipmap-xxhdpi/ic_launcher_round.png",
+        "source": "/home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png"
+    }
+]
