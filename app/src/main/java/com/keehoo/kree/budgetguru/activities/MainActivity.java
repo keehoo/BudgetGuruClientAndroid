@@ -3,14 +3,11 @@ package com.keehoo.kree.budgetguru.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.keehoo.kree.budgetguru.R;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -61,16 +58,16 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode == RC_OCR_CAPTURE) {
             if (resultCode == CommonStatusCodes.SUCCESS) {
                 if (data != null) {
-                    ArrayList<String> result = new ArrayList<>();
-                    result = data.getStringArrayListExtra("ocred_text");
-                    Toast.makeText(this, "Results were read "+result.get(0), Toast.LENGTH_SHORT).show();
+
+                    String result = data.getStringExtra("ocred_text");
+                    Toast.makeText(this, "Results were read "+result, Toast.LENGTH_SHORT).show();
                     // String text = data.getStringExtra(OcrActivity.TextBlockObject);
                    // statusMessage.setText(R.string.ocr_success);
                    // textValue.setText(text);
                    // Log.d(TAG, "Text read: " + text);
                    // Toast.makeText(this, "text : "+text, Toast.LENGTH_LONG).show();
                     Intent intentWithResults = new Intent(this, OcrResultAnalysisActivity.class);
-                    intentWithResults.putStringArrayListExtra("ocr_results", result);
+                    intentWithResults.putExtra("ocr_results", result);
                     startActivity(intentWithResults);
                 } else {
                     //  statusMessage.setText(R.string.ocr_failure);

@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/main/shaders"/></dataSet><dataSet config="debug"><source path="/home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/src/debug/shaders"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/Users/krzysztof/AndroidStudioProjects/BudgetGuru/app/src/main/shaders"/></dataSet><dataSet config="debug"><source path="/Users/krzysztof/AndroidStudioProjects/BudgetGuru/app/src/debug/shaders"/></dataSet></merger>

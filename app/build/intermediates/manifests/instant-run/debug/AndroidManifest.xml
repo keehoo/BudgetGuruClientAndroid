@@ -30,10 +30,12 @@
 
     <application
         android:allowBackup="true"
+        android:debuggable="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:testOnly="true"
         android:theme="@style/AppTheme" >
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
@@ -137,8 +139,8 @@ Service handling Google Sign-In user revocation. For apps that do not integrate 
             android:value="@integer/google_play_services_version" />
 
         <provider
-            android:name="com.android.tools.fd.runtime.InstantRunContentProvider"
-            android:authorities="com.keehoo.kree.budgetguru.com.android.tools.fd.runtime.InstantRunContentProvider"
+            android:name="com.android.tools.ir.server.InstantRunContentProvider"
+            android:authorities="com.keehoo.kree.budgetguru.com.android.tools.ir.server.InstantRunContentProvider"
             android:multiprocess="true" />
     </application>
 

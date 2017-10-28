@@ -16,7 +16,7 @@ import java.lang.Override;
 public class BudgetEntryActivity_ViewBinding implements Unbinder {
   private BudgetEntryActivity target;
 
-  private View view2131558438;
+  private View view2131230740;
 
   @UiThread
   public BudgetEntryActivity_ViewBinding(BudgetEntryActivity target) {
@@ -32,7 +32,7 @@ public class BudgetEntryActivity_ViewBinding implements Unbinder {
     target.userId = Utils.findRequiredViewAsType(source, R.id.user_id, "field 'userId'", EditText.class);
     view = Utils.findRequiredView(source, R.id.add, "field 'add' and method 'addNewBudgetEntry'");
     target.add = Utils.castView(view, R.id.add, "field 'add'", Button.class);
-    view2131558438 = view;
+    view2131230740 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -52,7 +52,7 @@ public class BudgetEntryActivity_ViewBinding implements Unbinder {
     target.userId = null;
     target.add = null;
 
-    view2131558438.setOnClickListener(null);
-    view2131558438 = null;
+    view2131230740.setOnClickListener(null);
+    view2131230740 = null;
   }
 }

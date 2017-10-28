@@ -15,11 +15,11 @@ import java.lang.Override;
 public class MainActivity_ViewBinding implements Unbinder {
   private MainActivity target;
 
-  private View view2131558531;
+  private View view2131230764;
 
-  private View view2131558532;
+  private View view2131230763;
 
-  private View view2131558534;
+  private View view2131230823;
 
   @UiThread
   public MainActivity_ViewBinding(MainActivity target) {
@@ -33,7 +33,7 @@ public class MainActivity_ViewBinding implements Unbinder {
     View view;
     view = Utils.findRequiredView(source, R.id.create_new_user, "field 'createUserButton' and method 'startNewUserActivity'");
     target.createUserButton = Utils.castView(view, R.id.create_new_user, "field 'createUserButton'", Button.class);
-    view2131558531 = view;
+    view2131230764 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -42,7 +42,7 @@ public class MainActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.create_budget_entry, "field 'createBudgetEntryButton' and method 'startNewBudgetEntryActivity'");
     target.createBudgetEntryButton = Utils.castView(view, R.id.create_budget_entry, "field 'createBudgetEntryButton'", Button.class);
-    view2131558532 = view;
+    view2131230763 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -52,7 +52,7 @@ public class MainActivity_ViewBinding implements Unbinder {
     target.loginButton = Utils.findRequiredViewAsType(source, R.id.login, "field 'loginButton'", Button.class);
     view = Utils.findRequiredView(source, R.id.ocr, "field 'ocrButton' and method 'startOcrActivity'");
     target.ocrButton = Utils.castView(view, R.id.ocr, "field 'ocrButton'", Button.class);
-    view2131558534 = view;
+    view2131230823 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -73,11 +73,11 @@ public class MainActivity_ViewBinding implements Unbinder {
     target.loginButton = null;
     target.ocrButton = null;
 
-    view2131558531.setOnClickListener(null);
-    view2131558531 = null;
-    view2131558532.setOnClickListener(null);
-    view2131558532 = null;
-    view2131558534.setOnClickListener(null);
-    view2131558534 = null;
+    view2131230764.setOnClickListener(null);
+    view2131230764 = null;
+    view2131230763.setOnClickListener(null);
+    view2131230763 = null;
+    view2131230823.setOnClickListener(null);
+    view2131230823 = null;
   }
 }

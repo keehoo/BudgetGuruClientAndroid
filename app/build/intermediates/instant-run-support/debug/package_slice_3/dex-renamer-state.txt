@@ -1,4 +1,4 @@
-#Thu Oct 05 10:12:55 CEST 2017
-base.0=/home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_3
+#Sat Oct 28 12:40:57 CEST 2017
+base.0=/Users/krzysztof/AndroidStudioProjects/BudgetGuru/app/build/intermediates/transforms/dexMerger/debug/3
 renamed.0=classes.dex
-file.0=/home/krzysztof/Documents/Huawei/BudgetGuruClientAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_3/classes.dex
+file.0=/Users/krzysztof/AndroidStudioProjects/BudgetGuru/app/build/intermediates/transforms/dexMerger/debug/3/classes.dex

@@ -23,7 +23,9 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.CommonStatusCodes;
+import com.google.android.gms.vision.text.Line;
 import com.google.android.gms.vision.text.TextRecognizer;
+import com.google.gson.Gson;
 import com.keehoo.kree.budgetguru.R;
 import com.keehoo.kree.budgetguru.camera.CameraSource;
 import com.keehoo.kree.budgetguru.camera.CameraSourcePreview;
@@ -33,6 +35,7 @@ import com.keehoo.kree.budgetguru.ocr.OcrGraphic;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 public class OcrActivity extends AppCompatActivity {
@@ -215,15 +218,20 @@ public class OcrActivity extends AppCompatActivity {
 
     private boolean onTap(float rawX, float rawY) {
         Toast.makeText(this, "tap", Toast.LENGTH_SHORT).show();
-        ArrayList<String> textList = new ArrayList<>();
+        ArrayList<Line> textList = new ArrayList<>();
 
         Set<OcrGraphic> allGraphics = mGraphicOverlay.getAllGraphics();
         if (!allGraphics.isEmpty()) {
             for (OcrGraphic graphic : allGraphics) {
-                textList.add(graphic.getTextBlock().getValue());
+                List<Line> listOfLines = (List<Line>) graphic.getTextBlock().getComponents();
+                textList.addAll(listOfLines);
             }
             Intent data = new Intent();
-            data.putStringArrayListExtra("ocred_text", textList);
+            Gson gson = new Gson();
+String listOfLineAsJson = gson.toJson(textList);
+            System.out.println(gson.toJson(listOfLineAsJson));
+
+            data.putExtra("ocred_text", listOfLineAsJson);
             setResult(CommonStatusCodes.SUCCESS, data);
             finish();
         }

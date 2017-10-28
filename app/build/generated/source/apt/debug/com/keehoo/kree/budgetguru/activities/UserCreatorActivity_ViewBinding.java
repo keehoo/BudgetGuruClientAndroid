@@ -16,7 +16,7 @@ import java.lang.Override;
 public class UserCreatorActivity_ViewBinding implements Unbinder {
   private UserCreatorActivity target;
 
-  private View view2131558543;
+  private View view2131230765;
 
   @UiThread
   public UserCreatorActivity_ViewBinding(UserCreatorActivity target) {
@@ -35,7 +35,7 @@ public class UserCreatorActivity_ViewBinding implements Unbinder {
     target.password = Utils.findRequiredViewAsType(source, R.id.password, "field 'password'", EditText.class);
     view = Utils.findRequiredView(source, R.id.create_user, "field 'createUserButton' and method 'createUser'");
     target.createUserButton = Utils.castView(view, R.id.create_user, "field 'createUserButton'", Button.class);
-    view2131558543 = view;
+    view2131230765 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -58,7 +58,7 @@ public class UserCreatorActivity_ViewBinding implements Unbinder {
     target.password = null;
     target.createUserButton = null;
 
-    view2131558543.setOnClickListener(null);
-    view2131558543 = null;
+    view2131230765.setOnClickListener(null);
+    view2131230765 = null;
   }
 }

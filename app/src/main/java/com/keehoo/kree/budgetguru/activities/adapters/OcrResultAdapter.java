@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.vision.text.Line;
 import com.keehoo.kree.budgetguru.R;
 
 import java.util.List;
@@ -17,11 +18,11 @@ import java.util.List;
 
 public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrViewHolder> {
 
-    private List<String> dane;
+    private List<Line> dane;
     private LayoutInflater layoutInflater;
     private Context context;
 
-    public OcrResultAdapter(Context context, List<String> dane) {
+    public OcrResultAdapter(Context context, List<Line> dane) {
         this.context = context;
         this.dane = dane;
         this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -35,8 +36,8 @@ public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrV
 
     @Override
     public void onBindViewHolder(OcrViewHolder holder, int position) {
-        String item = dane.get(position);
-        holder.textField.setText(item);
+        Line item = dane.get(position);
+        holder.textField.setText(item.getValue());
     }
 
     @Override
