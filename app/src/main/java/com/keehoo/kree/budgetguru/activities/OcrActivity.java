@@ -228,7 +228,7 @@ public class OcrActivity extends AppCompatActivity {
             }
             Intent data = new Intent();
             Gson gson = new Gson();
-String listOfLineAsJson = gson.toJson(textList);
+            String listOfLineAsJson = gson.toJson(textList);
             System.out.println(gson.toJson(listOfLineAsJson));
 
             data.putExtra("ocred_text", listOfLineAsJson);

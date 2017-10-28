@@ -3,6 +3,7 @@ package com.keehoo.kree.budgetguru.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -60,7 +61,8 @@ public class MainActivity extends AppCompatActivity {
                 if (data != null) {
 
                     String result = data.getStringExtra("ocred_text");
-                    Toast.makeText(this, "Results were read "+result, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(this, "Results were read "+result, Toast.LENGTH_SHORT).show();
+                    Log.d(this.getPackageCodePath(), result);
                     // String text = data.getStringExtra(OcrActivity.TextBlockObject);
                    // statusMessage.setText(R.string.ocr_success);
                    // textValue.setText(text);

@@ -6,10 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.vision.text.Line;
 import com.keehoo.kree.budgetguru.R;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -18,14 +21,48 @@ import java.util.List;
 
 public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrViewHolder> {
 
-    private List<Line> dane;
+    private List<Line> data;
     private LayoutInflater layoutInflater;
     private Context context;
+    private int sumaX, sumaY;
+    private int diff = 25;
+    private String sumReceiptValue;
 
-    public OcrResultAdapter(Context context, List<Line> dane) {
+    public OcrResultAdapter(Context context, List<Line> data) {
         this.context = context;
-        this.dane = dane;
+        this.data =
+
+                //data;
+                prepareData();
         this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
+
+    private List<Line> prepareData() {
+        List<Line> suma = new ArrayList<>();
+        String potentialSum = "";
+        for (Line line : data) {
+            if (line.getValue().contains("SUMA")
+                    || line.getValue().contains("SVMA")) {
+                sumaX = line.getBoundingBox().centerX();
+                sumaY = line.getBoundingBox().centerY();
+            }
+        }
+        if (sumaX == 0 || sumaY == 0) {
+            return data;
+        }
+        for (Line line : data) {
+            if (line.getBoundingBox().centerY() - sumaY < diff*2) { // multiplying just to have a positive value
+                suma.clear();
+                diff = line.getBoundingBox().centerY() - sumaY;
+                potentialSum = line.getValue();
+                suma.add(line);
+            }
+        }
+        Toast.makeText(context, "Potential sum : "+potentialSum, Toast.LENGTH_LONG).show();
+        if (!"".equals(potentialSum) && !suma.isEmpty()) {
+
+            return suma;
+        } else return Collections.emptyList();
     }
 
     @Override
@@ -36,13 +73,13 @@ public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrV
 
     @Override
     public void onBindViewHolder(OcrViewHolder holder, int position) {
-        Line item = dane.get(position);
-        holder.textField.setText(item.getValue());
+        Line item = data.get(position);
+        holder.textField.setText(item.getValue() + " x: " + item.getBoundingBox().centerX() + " Y: " + item.getBoundingBox().centerY());
     }
 
     @Override
     public int getItemCount() {
-        return dane.size();
+        return data.size();
     }
 
     class OcrViewHolder extends RecyclerView.ViewHolder {
