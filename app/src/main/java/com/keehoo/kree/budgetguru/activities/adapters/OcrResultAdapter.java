@@ -2,18 +2,15 @@ package com.keehoo.kree.budgetguru.activities.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.vision.text.Line;
 import com.keehoo.kree.budgetguru.R;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -31,7 +28,7 @@ public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrV
 
     public OcrResultAdapter(Context context, List<Line> dataOfStuff) {
         this.context = context;
-        this.data =
+        this.data = //dataOfStuff;
 
                 //data;
                 prepareData(dataOfStuff);
@@ -39,37 +36,30 @@ public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrV
     }
 
     private List<Line> prepareData(List<Line> data) {
-        List<Line> suma = new ArrayList<>();
-        String potentialSum = "";
+        List<Line> restul = new ArrayList<>();
+        Line sumaLine = null;
         for (Line line : data) {
-            if (line.getValue().contains("SUMA")
-                    || line.getValue().contains("SVMA")) {
-                sumaX = line.getBoundingBox().centerX();
-                sumaY = line.getBoundingBox().centerY();
-                //       suma.add(line);
+            if (line.getValue().contains("SUMA")) {
+                sumaLine = line;
+                sumaY = sumaLine.getBoundingBox().centerY();
+                sumaX = sumaLine.getBoundingBox().centerX();
+                restul.add(sumaLine);
             }
         }
-        if (sumaX == 0 || sumaY == 0) {
-            return data;
-        }
-
-        Log.d("TAG", "Suma Y = " + sumaY);
         for (Line line : data) {
-            if (line.getBoundingBox().centerY() - sumaY < 25 && line.getBoundingBox().centerY() > -25) {
-                Log.d("TAG", line.getValue() + " centery - sumay < diff*2");
-                //suma.clear();
-                diff = line.getBoundingBox().centerY() - sumaY;
-                potentialSum = line.getValue();
-                if (line.getValue().contains(",")) {
-                    suma.add(line);
+            if (line.getBoundingBox().centerY() + 35 > sumaLine.getBoundingBox().centerY() &&
+                    line.getBoundingBox().centerY() - 35 < sumaLine.getBoundingBox().centerY()) {
+                if (line.equals(sumaLine)) {
+                    continue;
                 }
+                restul.add(line);
             }
         }
-        Toast.makeText(context, "Potential sum : " + potentialSum, Toast.LENGTH_LONG).show();
-        if (!"".equals(potentialSum) && !suma.isEmpty()) {
 
-            return suma;
-        } else return Collections.emptyList();
+        if (null!=sumaLine && !restul.isEmpty()) {
+            return restul;
+        }
+        return data;
     }
 
     @Override
