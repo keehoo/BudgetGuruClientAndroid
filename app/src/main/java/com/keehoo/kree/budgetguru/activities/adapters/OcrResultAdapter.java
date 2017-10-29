@@ -38,12 +38,23 @@ public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrV
     private List<Line> prepareData(List<Line> data) {
         List<Line> restul = new ArrayList<>();
         Line sumaLine = null;
+        Line dateLine;
         for (Line line : data) {
-            if (line.getValue().contains("SUMA")) {
+            if (line.getValue().toUpperCase().contains("SUMA")
+                    || line.getValue().contains("SUNA")
+                    || line.getValue().contains("SVNA")
+                    || line.getValue().contains("Suma")
+
+                    ) {
                 sumaLine = line;
                 sumaY = sumaLine.getBoundingBox().centerY();
                 sumaX = sumaLine.getBoundingBox().centerX();
-                restul.add(sumaLine);
+               // restul.add(sumaLine);
+            }
+            if (line.getValue().matches("2?0?1?[123456789]\\/1?[1234567890]\\/[123]?[1234567890]")
+                    ||  ((line.getValue().startsWith("dn")) && line.getValue().contains("17r"))) {
+                dateLine = line;
+                restul.add(dateLine);
             }
         }
         for (Line line : data) {
@@ -56,9 +67,11 @@ public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrV
             }
         }
 
-        if (null!=sumaLine && !restul.isEmpty()) {
+        if (null != sumaLine && !restul.isEmpty()) {
             return restul;
         }
+
+
         return data;
     }
 
@@ -71,7 +84,9 @@ public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrV
     @Override
     public void onBindViewHolder(OcrViewHolder holder, int position) {
         Line item = data.get(position);
-        holder.textField.setText(item.getValue() + " x: " + item.getBoundingBox().centerX() + " Y: " + item.getBoundingBox().centerY());
+        //holder.textField.setText(item.getValue() + " x: " + item.getBoundingBox().centerX() + " Y: " + item.getBoundingBox().centerY());
+        holder.textField.setText("Suma z paragonu: "+item.getValue() );
+        holder.data.setText("Data z paragonu: "+item.);
     }
 
     @Override
@@ -81,7 +96,8 @@ public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrV
 
     class OcrViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView textField;
+        TextView textField;
+        TextView data;
         public int currentPosition;
         public String currentObject;
         public OcrResultAdapter adapter;
@@ -90,6 +106,7 @@ public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrV
             super(itemView);
             this.adapter = adapter;
             textField = (TextView) itemView.findViewById(R.id.item);
+            data = (TextView) itemView.findViewById(R.id.data);
         }
     }
 }
