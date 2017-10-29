@@ -36,6 +36,7 @@ public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrV
     }
 
     private List<Line> prepareData(List<Line> data) {
+        OcrResultWrapper result = new OcrResultWrapper();
         List<Line> restul = new ArrayList<>();
         Line sumaLine = null;
         Line dateLine;
@@ -54,6 +55,7 @@ public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrV
             if (line.getValue().matches("2?0?1?[123456789]\\/1?[1234567890]\\/[123]?[1234567890]")
                     ||  ((line.getValue().startsWith("dn")) && line.getValue().contains("17r"))) {
                 dateLine = line;
+                result.setReceiptDate(dateLine.getValue().trim());
                 restul.add(dateLine);
             }
         }
@@ -63,6 +65,7 @@ public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrV
                 if (line.equals(sumaLine)) {
                     continue;
                 }
+                result.setReceiptTotalValue(line.getValue());
                 restul.add(line);
             }
         }

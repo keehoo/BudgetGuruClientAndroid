@@ -18,7 +18,6 @@ import java.util.List;
 
 public class OcrResultAnalysisActivity extends AppCompatActivity {
 
-    List<String> ocrResultList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +28,7 @@ public class OcrResultAnalysisActivity extends AppCompatActivity {
         Type listType = new TypeToken<ArrayList<Line>>(){}.getType();
         Gson gson = new Gson();
         List<Line> listOfLines = gson.fromJson(ocrResultList, listType);
+
 
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
