@@ -2,6 +2,7 @@ package com.keehoo.kree.budgetguru.activities.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,16 +29,16 @@ public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrV
     private int diff = 25;
     private String sumReceiptValue;
 
-    public OcrResultAdapter(Context context, List<Line> data) {
+    public OcrResultAdapter(Context context, List<Line> dataOfStuff) {
         this.context = context;
         this.data =
 
                 //data;
-                prepareData();
+                prepareData(dataOfStuff);
         this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    private List<Line> prepareData() {
+    private List<Line> prepareData(List<Line> data) {
         List<Line> suma = new ArrayList<>();
         String potentialSum = "";
         for (Line line : data) {
@@ -45,20 +46,26 @@ public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrV
                     || line.getValue().contains("SVMA")) {
                 sumaX = line.getBoundingBox().centerX();
                 sumaY = line.getBoundingBox().centerY();
+                //       suma.add(line);
             }
         }
         if (sumaX == 0 || sumaY == 0) {
             return data;
         }
+
+        Log.d("TAG", "Suma Y = " + sumaY);
         for (Line line : data) {
-            if (line.getBoundingBox().centerY() - sumaY < diff*2) { // multiplying just to have a positive value
-                suma.clear();
+            if (line.getBoundingBox().centerY() - sumaY < 25 && line.getBoundingBox().centerY() > -25) {
+                Log.d("TAG", line.getValue() + " centery - sumay < diff*2");
+                //suma.clear();
                 diff = line.getBoundingBox().centerY() - sumaY;
                 potentialSum = line.getValue();
-                suma.add(line);
+                if (line.getValue().contains(",")) {
+                    suma.add(line);
+                }
             }
         }
-        Toast.makeText(context, "Potential sum : "+potentialSum, Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "Potential sum : " + potentialSum, Toast.LENGTH_LONG).show();
         if (!"".equals(potentialSum) && !suma.isEmpty()) {
 
             return suma;
