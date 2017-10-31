@@ -2,6 +2,7 @@ package com.keehoo.kree.budgetguru.activities.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import com.keehoo.kree.budgetguru.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by krzysztof on 12.10.17.
@@ -19,6 +22,8 @@ import java.util.List;
 
 public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrViewHolder> {
 
+    public static final String DATE_REGEX_WITH_DASH = ".*2?0?1?[123456789]-1?[1234567890]-[123]?[1234567890].*";
+    public static final String DATE_REGEX_WITH_DASH1 = "(20)?\\d?\\d-\\d?\\d-\\d\\d?\\d?\\d?";
     private List<Line> data;
     private LayoutInflater layoutInflater;
     private Context context;
@@ -41,6 +46,7 @@ public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrV
         Line sumaLine = null;
         Line dateLine;
         for (Line line : data) {
+            Log.d("line", line.getValue());
             if (line.getValue().toUpperCase().contains("SUMA")
                     || line.getValue().contains("SUNA")
                     || line.getValue().contains("SVNA")
@@ -50,13 +56,26 @@ public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrV
                 sumaLine = line;
                 sumaY = sumaLine.getBoundingBox().centerY();
                 sumaX = sumaLine.getBoundingBox().centerX();
-               // restul.add(sumaLine);
+                // restul.add(sumaLine);
             }
             if (line.getValue().matches("2?0?1?[123456789]\\/1?[1234567890]\\/[123]?[1234567890]")
-                    ||  ((line.getValue().startsWith("dn")) && line.getValue().contains("17r"))) {
+                    || line.getValue().matches(DATE_REGEX_WITH_DASH)) {
                 dateLine = line;
-                result.setReceiptDate(dateLine.getValue().trim());
-                restul.add(dateLine);
+
+                String mydata = dateLine.getValue();
+                Pattern pattern = Pattern.compile(DATE_REGEX_WITH_DASH1);
+                Matcher matcher = pattern.matcher(mydata);
+                Log.d("ADAPTER", "Checking for matcher find");
+                if (matcher.find()) {
+                    Log.d("ADAPTER", "matcher find returned true");
+                    Log.d("ADAPTER", "Group count : "+matcher.groupCount());
+                   // for (int i = 1; i < matcher.groupCount(); i++) {
+                        Log.d("ADAPTER", "MATCHER       " + matcher.group(0));
+                   // }
+                } else {
+                    result.setReceiptDate(dateLine.getValue().trim());
+                    restul.add(dateLine);
+                }
             }
         }
         for (Line line : data) {
@@ -88,8 +107,7 @@ public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrV
     public void onBindViewHolder(OcrViewHolder holder, int position) {
         Line item = data.get(position);
         //holder.textField.setText(item.getValue() + " x: " + item.getBoundingBox().centerX() + " Y: " + item.getBoundingBox().centerY());
-        holder.textField.setText("Suma z paragonu: "+item.getValue() );
-        holder.data.setText("Data z paragonu: "+item.);
+        holder.textField.setText("Suma z paragonu: " + item.getValue());
     }
 
     @Override
