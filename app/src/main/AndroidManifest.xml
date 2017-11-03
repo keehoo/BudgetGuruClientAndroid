@@ -32,7 +32,8 @@
         <activity
             android:name=".activities.OcrActivity"
             android:label="Read Text" />
-        <activity android:name=".activities.OcrResultAnalysisActivity"></activity>
+        <activity android:name=".activities.OcrResultAnalysisActivity" />
+        <activity android:name=".activities.FullReportActivity"></activity>
     </application>
 
 </manifest>

@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context="com.keehoo.kree.budgetguru.activities.OcrResultAnalysisActivity">
+    android:layout_height="match_parent"
+    tools:context="com.keehoo.kree.budgetguru.activities.FullReportActivity">
 
-    <android.support.v7.widget.RecyclerView
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/recycler_view"
-        />
-    <Button
+        android:id="@+id/sum"/>
+
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/seeFullReportButtonId"
-        android:text="@string/go_to_summary"/>
+        android:id="@+id/date"/>
 
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/time"/>
 </LinearLayout>
