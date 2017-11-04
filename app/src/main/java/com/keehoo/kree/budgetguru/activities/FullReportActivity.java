@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.keehoo.kree.budgetguru.R;
 import com.keehoo.kree.budgetguru.activities.adapters.CategoryListAdapter;
@@ -111,13 +112,10 @@ public class FullReportActivity extends AppCompatActivity {
 
 
 
-            BudgetEntryModel budgetEntry = new BudgetEntryModel();
+            final BudgetEntryModel budgetEntry = new BudgetEntryModel();
 
             budgetEntry.setBudgetItem(new BudgetItem(new BigDecimal(sumDouble)));
-            String[] splitDate = date.getText().toString().split("-");
-            long year = Long.valueOf(splitDate[0]);
-            int month = Integer.valueOf(splitDate[1]);
-            int day = Integer.valueOf(splitDate[2]);
+
             budgetEntry.setDateOfCost(date.getText().toString());
             budgetEntry.setTimeOfCost(time.getText().toString());
             budgetEntry.setCategory(category);
@@ -130,15 +128,7 @@ public class FullReportActivity extends AppCompatActivity {
             addBudgetEntry.enqueue(new Callback<Void>() {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
-                    System.out.println("LOG TAG "+call.request().body().toString());
-                    System.out.println("LOG TAG "+call.request().body().contentType());
-                    System.out.println("LOG TAG "+call.request().method());
-                    System.out.println("LOG TAG "+call.request().url());
-                    System.out.println("LOG TAG "+call.request().toString());
-                    System.out.println("LOG TAG "+call.toString());
-                    System.out.println("LOG TAG "+response.message());
-                    System.out.println("LOG TAG "+response.toString());
-                    System.out.println("LOG TAG "+response.raw().message());
+                    Toast.makeText(FullReportActivity.this, "Added budget entry to "+budgetEntry.getCategory()+" category, value of "+budgetEntry.getValue(), Toast.LENGTH_SHORT).show();
 
                 }
 

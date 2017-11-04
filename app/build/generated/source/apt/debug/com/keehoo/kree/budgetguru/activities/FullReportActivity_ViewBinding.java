@@ -16,7 +16,7 @@ import java.lang.Override;
 public class FullReportActivity_ViewBinding implements Unbinder {
   private FullReportActivity target;
 
-  private View view2131230898;
+  private View view2131230903;
 
   @UiThread
   public FullReportActivity_ViewBinding(FullReportActivity target) {
@@ -31,9 +31,10 @@ public class FullReportActivity_ViewBinding implements Unbinder {
     target.sum = Utils.findRequiredViewAsType(source, R.id.sum, "field 'sum'", TextView.class);
     target.date = Utils.findRequiredViewAsType(source, R.id.date, "field 'date'", TextView.class);
     target.time = Utils.findRequiredViewAsType(source, R.id.time, "field 'time'", TextView.class);
+    target.categoryTextView = Utils.findRequiredViewAsType(source, R.id.category, "field 'categoryTextView'", TextView.class);
     view = Utils.findRequiredView(source, R.id.upload, "field 'uploadButton' and method 'upload'");
     target.uploadButton = Utils.castView(view, R.id.upload, "field 'uploadButton'", Button.class);
-    view2131230898 = view;
+    view2131230903 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -52,9 +53,10 @@ public class FullReportActivity_ViewBinding implements Unbinder {
     target.sum = null;
     target.date = null;
     target.time = null;
+    target.categoryTextView = null;
     target.uploadButton = null;
 
-    view2131230898.setOnClickListener(null);
-    view2131230898 = null;
+    view2131230903.setOnClickListener(null);
+    view2131230903 = null;
   }
 }
