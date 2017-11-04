@@ -26,9 +26,14 @@ public interface RestInterface {
     @GET("users/allUsers")
     Call<List<User>> listUsers();
 
+    @GET("category/getAll")
+    Call<List<String>> getAll();
+
     @POST("users/addUser")
     Call<Void> createUser(@Body User user);
 
     @POST("budget/add")
     Call<Void> addBudget(@Body BudgetEntryModel budgetEntry);
+
+
 }

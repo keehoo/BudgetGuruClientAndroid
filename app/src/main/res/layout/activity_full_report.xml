@@ -22,4 +22,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/time"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Upload to server"
+        android:id="@+id/upload"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/category_recycler_view"/>
 </LinearLayout>

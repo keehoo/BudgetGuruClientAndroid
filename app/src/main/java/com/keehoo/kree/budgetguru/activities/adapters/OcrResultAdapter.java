@@ -24,9 +24,6 @@ public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrV
     private List<OcrResultWrapper> data;
     private LayoutInflater layoutInflater;
     private Context context;
-    private int sumaX, sumaY;
-    private int diff = 25;
-    private String sumReceiptValue;
 
     public OcrResultAdapter(Context context, List<OcrResultWrapper> dataOfStuff) {
         this.context = context;

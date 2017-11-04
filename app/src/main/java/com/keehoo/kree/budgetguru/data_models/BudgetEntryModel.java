@@ -1,15 +1,58 @@
 package com.keehoo.kree.budgetguru.data_models;
 
-import java.util.Objects;
-
 /**
  * Created by krzysztof on 29.09.2017.
  */
 
 public class BudgetEntryModel {
 
-    BudgetItem budgetItem;
-    long user;
+    private Long id;
+    private long user;
+    private String dateOfCost;
+    private String timeOfCost;
+    private Category category;
+
+    private BudgetItem budgetItem;
+
+
+    public BudgetEntryModel(BudgetItem budgetItem) {
+        this.budgetItem = budgetItem;
+        boolean isCost;
+        if (budgetItem.getValue().doubleValue() > 0) {
+            isCost = true;
+        } else isCost = false;
+        category = Category.FOOD_OUT;
+        dateOfCost = null;
+        timeOfCost = null;
+    }
+
+    public BudgetEntryModel(BudgetItem budgetItem, Category category) {
+        setCategory(category);
+        this.budgetItem = budgetItem;
+        boolean isCost;
+        if (budgetItem.getValue().doubleValue() > 0) {
+            isCost = true;
+        } else isCost = false;
+        dateOfCost = null;
+        timeOfCost = null;
+
+    }
+
+    public BudgetEntryModel() {
+
+    }
+
+    public double getValue() {
+        return budgetItem.getValue().doubleValue();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public long getUser() {
         return user;
@@ -27,17 +70,27 @@ public class BudgetEntryModel {
         this.budgetItem = budgetItem;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        BudgetEntryModel that = (BudgetEntryModel) o;
-        return user == that.user &&
-                Objects.equals(budgetItem, that.budgetItem);
+    public String getDateOfCost() {
+        return dateOfCost;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(budgetItem, user);
+    public void setDateOfCost(String dateOfCost) {
+        this.dateOfCost = dateOfCost;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public String getTimeOfCost() {
+        return timeOfCost;
+    }
+
+    public void setTimeOfCost(String timeOfCost) {
+        this.timeOfCost = timeOfCost;
     }
 }
