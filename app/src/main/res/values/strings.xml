@@ -8,4 +8,7 @@
     <string name="camera_rationale">Access to the camera is needed for detection</string>
     <string name="ok">OK</string>
     <string name="go_to_summary">Go to Summary</string>
+    <string name="facebook_app_id">174317216480393</string>
+    <string name="fb_login_protocol_scheme">fb174317216480393</string>
+    <string name="session_preferences">budget_guru_session_data</string>
 </resources>

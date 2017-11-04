@@ -47,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.login)
     void startActivity() {
-        new Intent(MainActivity.this, LoginActivity.class);
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
     }
 
     @OnClick(R.id.ocr)

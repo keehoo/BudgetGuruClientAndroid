@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "1066193951634",
-    "project_id": "budget-guru"
+    "project_number": "1061870125667",
+    "project_id": "firebase-budgetguru"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1066193951634:android:3bd1dfb1da5c0bc0",
+        "mobilesdk_app_id": "1:1061870125667:android:3bd1dfb1da5c0bc0",
         "android_client_info": {
           "package_name": "com.keehoo.kree.budgetguru"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1066193951634-il9m90q6at9vd2kqcv4ht2btkl839nff.apps.googleusercontent.com",
-          "client_type": 3
-        },
-        {
-          "client_id": "1066193951634-htvvc49ad3kpeikif7gsp21j7d8vkke9.apps.googleusercontent.com",
+          "client_id": "1061870125667-ajvr33lsuiktmf3jree65n2f7hodvtuv.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.keehoo.kree.budgetguru",
-            "certificate_hash": "71c67d719c7673beade48f9f2d38485d7ecf1bbf"
+            "certificate_hash": "e08b084fb2e6dfff4e86ceed0ac77afa7228014e"
           }
+        },
+        {
+          "client_id": "1061870125667-hp6e58p69nhdh3siic9a0tlfvrlklo2l.apps.googleusercontent.com",
+          "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAweFy0cNvqCTtxo2JqF27WiEYrnKy9cC0"
+          "current_key": "AIzaSyAw27WiyiSbXt6tiYotFL-8SODGxR8oBXM"
         }
       ],
       "services": {

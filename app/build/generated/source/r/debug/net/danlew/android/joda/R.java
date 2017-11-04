@@ -517,9 +517,9 @@ public final class R {
         public static final int joda_zoneinfomap = 0x7f0d01e5;
     }
     public static final class string {
-        public static final int joda_time_android_date_time = 0x7f0e003d;
-        public static final int joda_time_android_preposition_for_date = 0x7f0e003e;
-        public static final int joda_time_android_preposition_for_time = 0x7f0e003f;
-        public static final int joda_time_android_relative_time = 0x7f0e0040;
+        public static final int joda_time_android_date_time = 0x7f0e0054;
+        public static final int joda_time_android_preposition_for_date = 0x7f0e0055;
+        public static final int joda_time_android_preposition_for_time = 0x7f0e0056;
+        public static final int joda_time_android_relative_time = 0x7f0e0057;
     }
 }

@@ -16,7 +16,7 @@ import java.lang.Override;
 public class FullReportActivity_ViewBinding implements Unbinder {
   private FullReportActivity target;
 
-  private View view2131230903;
+  private View view2131230905;
 
   @UiThread
   public FullReportActivity_ViewBinding(FullReportActivity target) {
@@ -34,7 +34,7 @@ public class FullReportActivity_ViewBinding implements Unbinder {
     target.categoryTextView = Utils.findRequiredViewAsType(source, R.id.category, "field 'categoryTextView'", TextView.class);
     view = Utils.findRequiredView(source, R.id.upload, "field 'uploadButton' and method 'upload'");
     target.uploadButton = Utils.castView(view, R.id.upload, "field 'uploadButton'", Button.class);
-    view2131230903 = view;
+    view2131230905 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -56,7 +56,7 @@ public class FullReportActivity_ViewBinding implements Unbinder {
     target.categoryTextView = null;
     target.uploadButton = null;
 
-    view2131230903.setOnClickListener(null);
-    view2131230903 = null;
+    view2131230905.setOnClickListener(null);
+    view2131230905 = null;
   }
 }

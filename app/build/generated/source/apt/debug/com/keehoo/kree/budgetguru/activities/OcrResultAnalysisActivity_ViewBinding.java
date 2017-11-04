@@ -15,7 +15,7 @@ import java.lang.Override;
 public class OcrResultAnalysisActivity_ViewBinding implements Unbinder {
   private OcrResultAnalysisActivity target;
 
-  private View view2131230861;
+  private View view2131230862;
 
   @UiThread
   public OcrResultAnalysisActivity_ViewBinding(OcrResultAnalysisActivity target) {
@@ -30,7 +30,7 @@ public class OcrResultAnalysisActivity_ViewBinding implements Unbinder {
     View view;
     view = Utils.findRequiredView(source, R.id.seeFullReportButtonId, "field 'seeFullReportButton' and method 'seeFullReport'");
     target.seeFullReportButton = Utils.castView(view, R.id.seeFullReportButtonId, "field 'seeFullReportButton'", Button.class);
-    view2131230861 = view;
+    view2131230862 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -48,7 +48,7 @@ public class OcrResultAnalysisActivity_ViewBinding implements Unbinder {
 
     target.seeFullReportButton = null;
 
-    view2131230861.setOnClickListener(null);
-    view2131230861 = null;
+    view2131230862.setOnClickListener(null);
+    view2131230862 = null;
   }
 }
