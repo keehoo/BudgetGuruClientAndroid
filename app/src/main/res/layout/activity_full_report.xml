@@ -23,6 +23,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/time"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/category"/>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

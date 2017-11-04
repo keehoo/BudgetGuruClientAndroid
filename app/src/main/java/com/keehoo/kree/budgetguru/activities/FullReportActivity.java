@@ -13,7 +13,6 @@ import com.keehoo.kree.budgetguru.R;
 import com.keehoo.kree.budgetguru.activities.adapters.CategoryListAdapter;
 import com.keehoo.kree.budgetguru.data_models.BudgetEntryModel;
 import com.keehoo.kree.budgetguru.data_models.BudgetItem;
-import com.keehoo.kree.budgetguru.data_models.Category;
 import com.keehoo.kree.budgetguru.rest.RestInterface;
 
 import java.math.BigDecimal;
@@ -30,9 +29,10 @@ public class FullReportActivity extends AppCompatActivity {
 
     RestInterface restInterface = RestInterface.retrofit.create(RestInterface.class);
     List<String> catList;
+
+    private String category;
+
     private RecyclerView categoryList;
-
-
     @BindView(R.id.sum)
     TextView sum;
 
@@ -43,6 +43,12 @@ public class FullReportActivity extends AppCompatActivity {
 
     @BindView(R.id.time)
     TextView time;
+
+
+    @BindView(R.id.category)
+    TextView categoryTextView;
+
+
     @BindView(R.id.upload)
     Button uploadButton;
 
@@ -57,9 +63,11 @@ public class FullReportActivity extends AppCompatActivity {
         sum.setText(intent.getStringExtra("sum"));
         date.setText(intent.getStringExtra("date"));
         time.setText(intent.getStringExtra("time"));
-getList();
-
         categoryList = (RecyclerView) findViewById(R.id.category_recycler_view);
+        getList();
+
+
+
 
 
 
@@ -73,6 +81,12 @@ getList();
             public void onResponse(Call<List<String>> call, Response<List<String>> response) {
             catList = response.body();
                 CategoryListAdapter adapter = new CategoryListAdapter(FullReportActivity.this, catList);
+                adapter.setOnItemClickListener(new CategoryListAdapter.OnItemClickListener() {
+                    @Override
+                    public void onClick(int position, String object) {
+                        setCategoryFieldAndUpdateTextView(object);
+                    }
+                });
                 categoryList.setLayoutManager(new LinearLayoutManager(FullReportActivity.this));
                 categoryList.setAdapter(adapter);
             }
@@ -82,6 +96,11 @@ getList();
             }
         });
 
+    }
+
+    private void setCategoryFieldAndUpdateTextView(String object) {
+        categoryTextView.setText(object);
+        setCategory(object);
     }
 
     @OnClick(R.id.upload)
@@ -101,7 +120,7 @@ getList();
             int day = Integer.valueOf(splitDate[2]);
             budgetEntry.setDateOfCost(date.getText().toString());
             budgetEntry.setTimeOfCost(time.getText().toString());
-            budgetEntry.setCategory(Category.CAR);
+            budgetEntry.setCategory(category);
             budgetEntry.setUser(38);
 
 
@@ -130,5 +149,13 @@ getList();
                 }
             });
         }
+
+    public String getCategory() {
+        return category;
     }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+}
 

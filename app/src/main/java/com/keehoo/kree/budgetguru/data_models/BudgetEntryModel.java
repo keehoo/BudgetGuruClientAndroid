@@ -10,7 +10,7 @@ public class BudgetEntryModel {
     private long user;
     private String dateOfCost;
     private String timeOfCost;
-    private Category category;
+    private String category;
 
     private BudgetItem budgetItem;
 
@@ -21,12 +21,12 @@ public class BudgetEntryModel {
         if (budgetItem.getValue().doubleValue() > 0) {
             isCost = true;
         } else isCost = false;
-        category = Category.FOOD_OUT;
+        category = "UNKNOWN";
         dateOfCost = null;
         timeOfCost = null;
     }
 
-    public BudgetEntryModel(BudgetItem budgetItem, Category category) {
+    public BudgetEntryModel(BudgetItem budgetItem, String category) {
         setCategory(category);
         this.budgetItem = budgetItem;
         boolean isCost;
@@ -78,11 +78,11 @@ public class BudgetEntryModel {
         this.dateOfCost = dateOfCost;
     }
 
-    public Category getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
