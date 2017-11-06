@@ -12,12 +12,15 @@ import android.widget.Toast;
 
 import com.keehoo.kree.budgetguru.R;
 import com.keehoo.kree.budgetguru.activities.adapters.CategoryListAdapter;
+import com.keehoo.kree.budgetguru.activities.adapters.OcrResultAdapter;
 import com.keehoo.kree.budgetguru.data_models.BudgetEntryModel;
 import com.keehoo.kree.budgetguru.data_models.BudgetItem;
 import com.keehoo.kree.budgetguru.rest.RestInterface;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -62,7 +65,26 @@ public class FullReportActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         sum.setText(intent.getStringExtra("sum"));
-        date.setText(intent.getStringExtra("date"));
+
+        String mydata = intent.getStringExtra("date");
+        Pattern pattern = Pattern.compile(OcrResultAdapter.DATE_REGEX_WITH_DASH_DATE_ONLY);
+        Matcher matcher = pattern.matcher(mydata);
+        String dateOnly = null;
+        if (matcher.find())
+        {
+            dateOnly = matcher.group(0);
+
+            System.out.println(matcher.group(0));
+            System.out.println(matcher.group(1));
+     //       System.out.println(matcher.group(2));
+     //       System.out.println(matcher.group(3));
+        }
+        if (dateOnly != null) {
+            date.setText(dateOnly);
+        } else {
+            date.setText(intent.getStringExtra("date"));
+        }
+
         time.setText(intent.getStringExtra("time"));
         categoryList = (RecyclerView) findViewById(R.id.category_recycler_view);
         getList();
