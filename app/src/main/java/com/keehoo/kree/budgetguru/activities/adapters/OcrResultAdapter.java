@@ -18,7 +18,7 @@ import java.util.List;
 public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrViewHolder> {
 
     public static final String DATE_REGEX_WITH_DASH = ".*2?0?1?[123456789]-1?[1234567890]-[123]?[1234567890].*";
-    public static final String DATE_REGEX_WITH_DASH1 = "(20)?\\d?\\d-\\d?\\d-\\d\\d?\\d?\\d?";
+    public static final String DATE_REGEX_WITH_DASH1 = ".*(20)?\\d?\\d-\\d?\\d-\\d\\d?\\d?\\d?.*";
     public static final String TIME_REGEX_WITH_DASH1 = "\\d\\d?[:.]\\d\\d?";
     public static final String TIME_REGEX_WITH_DASH2 = "\\d\\d?.\\d\\d?";
     private List<OcrResultWrapper> data;
