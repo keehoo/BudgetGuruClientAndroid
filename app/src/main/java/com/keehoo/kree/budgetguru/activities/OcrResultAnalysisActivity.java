@@ -18,8 +18,6 @@ import com.keehoo.kree.budgetguru.activities.adapters.OcrResultWrapper;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,7 +30,6 @@ public class OcrResultAnalysisActivity extends AppCompatActivity {
 
     private List<Line> listOfLines;
     private Line sumaLine;
-    private Line dateLine;
     private OcrResultWrapper ocrResult;
 
     @Override
@@ -93,47 +90,13 @@ public class OcrResultAnalysisActivity extends AppCompatActivity {
         return result;
     }
 
-    private void setDateLineAndValueLine() {
-        for (Line line : listOfLines) {
-            Log.d("line", line.getValue());
-            if (line.getValue().toUpperCase().contains("SUMA")
-                    || line.getValue().contains("SUNA")
-                    || line.getValue().contains("SVNA")
-                    || line.getValue().contains("Suma")
-                    || !line.getValue().contains("PTU")
-                    ) {
-                sumaLine = line;
-                Log.d("Suma line", "Suma line " + sumaLine.getValue());
-            }
-            if (line.getValue().matches(".*2?0?1?[123456789]\\/1?[1234567890]\\/[123]?[1234567890].*")
-                    || line.getValue().matches(".*2?0?1?[123456789]-1?[1234567890]-[123]?[1234567890].*")) {
-                dateLine = line;
-                Log.d("Suma line", "date line " + dateLine.getValue());
-            }
-        }
-    }
-
     @OnClick(R.id.seeFullReportButtonId)
     void seeFullReport() {
 
         Intent intent = new Intent(this, FullReportActivity.class);
-
         intent.putExtra("sum", ocrResult.getReceiptTotalValue());
         intent.putExtra("date", ocrResult.getReceiptDate());
         intent.putExtra("time", ocrResult.getReceiptTime());
-
         startActivity(intent);
-    }
-
-
-    private String checkForValue(Line line, String regex) {
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(line.getValue());
-        if (matcher.find()) {
-            if (null != matcher.group(0) && !matcher.group(0).isEmpty()) {
-                return matcher.group(0);
-            }
-        }
-        return null;
     }
 }

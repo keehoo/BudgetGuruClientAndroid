@@ -67,24 +67,15 @@ public class MainActivity extends AppCompatActivity {
                 if (data != null) {
 
                     String result = data.getStringExtra("ocred_text");
-                    //Toast.makeText(this, "Results were read "+result, Toast.LENGTH_SHORT).show();
                     Log.d(this.getPackageCodePath(), result);
-                    // String text = data.getStringExtra(OcrActivity.TextBlockObject);
-                   // statusMessage.setText(R.string.ocr_success);
-                   // textValue.setText(text);
-                   // Log.d(TAG, "Text read: " + text);
-                   // Toast.makeText(this, "text : "+text, Toast.LENGTH_LONG).show();
                     Intent intentWithResults = new Intent(this, OcrResultAnalysisActivity.class);
                     intentWithResults.putExtra("ocr_results", result);
                     startActivity(intentWithResults);
                 } else {
-                    //  statusMessage.setText(R.string.ocr_failure);
-                    //  Log.d(TAG, "No Text captured, intent data is null");
                     Toast.makeText(this, "text is null", Toast.LENGTH_LONG).show();
                 }
             } else {
-              //  statusMessage.setText(String.format(getString(R.string.ocr_error),
-              //          CommonStatusCodes.getStatusCodeString(resultCode)));
+
             }
         }
         else {
