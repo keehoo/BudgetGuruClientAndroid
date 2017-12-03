@@ -4,6 +4,8 @@ package com.keehoo.kree.budgetguru.data_models;
  * Created by krzysztof on 30.09.2017.
  */
 
+import android.arch.persistence.room.Ignore;
+
 import java.math.BigDecimal;
 
 public class BudgetItem {
@@ -11,6 +13,7 @@ public class BudgetItem {
     private BigDecimal value;
     private boolean cost;
 
+    @Ignore
     public BudgetItem(BigDecimal value) throws IllegalArgumentException {
         if (value.doubleValue() == 0) throw new IllegalArgumentException("The value cannot be zero");
         this.value = value;
@@ -48,7 +51,7 @@ public class BudgetItem {
         return value;
     }
 
-    void setValue(BigDecimal value) {
+    public void setValue(BigDecimal value) {
         this.value = value;
     }
 }

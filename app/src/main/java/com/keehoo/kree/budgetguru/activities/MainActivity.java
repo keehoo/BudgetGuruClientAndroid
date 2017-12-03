@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     Button loginButton;
     @BindView(R.id.ocr)
     Button ocrButton;
+    @BindView(R.id.local_database)
+    Button localDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,12 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.login)
     void startActivity() {
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.local_database)
+    void startLocalDbActivity() {
+        Intent intent = new Intent(MainActivity.this, LocalDatabaseActivity.class);
         startActivity(intent);
     }
 

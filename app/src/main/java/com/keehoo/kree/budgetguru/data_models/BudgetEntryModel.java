@@ -1,20 +1,35 @@
 package com.keehoo.kree.budgetguru.data_models;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Embedded;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
+
 /**
  * Created by krzysztof on 29.09.2017.
  */
-
+@Entity(tableName = "BudgetEntry")
 public class BudgetEntryModel {
 
+    @PrimaryKey(autoGenerate = true)
     private Long id;
+
+    @ColumnInfo(name = "user_id")
     private long user;
+    @ColumnInfo(name = "date_of_cost")
     private String dateOfCost;
+    @ColumnInfo(name = "time_of_cost")
     private String timeOfCost;
+
+    @ColumnInfo(name = "Category")
     private String category;
 
+    @Embedded()
     private BudgetItem budgetItem;
 
 
+    @Ignore
     public BudgetEntryModel(BudgetItem budgetItem) {
         this.budgetItem = budgetItem;
         boolean isCost;
@@ -25,7 +40,7 @@ public class BudgetEntryModel {
         dateOfCost = null;
         timeOfCost = null;
     }
-
+    @Ignore
     public BudgetEntryModel(BudgetItem budgetItem, String category) {
         setCategory(category);
         this.budgetItem = budgetItem;

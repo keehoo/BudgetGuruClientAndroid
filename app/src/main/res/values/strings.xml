@@ -11,4 +11,6 @@
     <string name="facebook_app_id">174317216480393</string>
     <string name="fb_login_protocol_scheme">fb174317216480393</string>
     <string name="session_preferences">budget_guru_session_data</string>
+    <string name="local_db">Local db</string>
+    <string name="title_activity_local_database">LocalDatabaseActivity</string>
 </resources>

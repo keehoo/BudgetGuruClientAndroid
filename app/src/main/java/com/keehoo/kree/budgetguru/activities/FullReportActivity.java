@@ -15,6 +15,7 @@ import com.keehoo.kree.budgetguru.activities.adapters.CategoryListAdapter;
 import com.keehoo.kree.budgetguru.activities.adapters.OcrResultAdapter;
 import com.keehoo.kree.budgetguru.data_models.BudgetEntryModel;
 import com.keehoo.kree.budgetguru.data_models.BudgetItem;
+import com.keehoo.kree.budgetguru.database.AppDatabase;
 import com.keehoo.kree.budgetguru.rest.RestInterface;
 
 import java.math.BigDecimal;
@@ -157,6 +158,7 @@ public class FullReportActivity extends AppCompatActivity {
                     Toast.makeText(FullReportActivity.this, "Added budget entry to " + budgetEntry.getCategory() + " category, value of " + budgetEntry.getValue(), Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    Toast.makeText(FullReportActivity.this, "Server is not running, saving to local db", Toast.LENGTH_LONG);
                     addToLocalDb(budgetEntry);
                 }
             }
@@ -170,7 +172,11 @@ public class FullReportActivity extends AppCompatActivity {
     }
 
     private void addToLocalDb(BudgetEntryModel budgetEntry) {
-        // TODO: implement local db.
+        Log.d("DataBase", "Adding budget entry to db ");
+        AppDatabase appDatabase = AppDatabase.getAppDatabase(this);
+        appDatabase.budgetEntryDao().insert(budgetEntry);
+        Log.d("DataBase", "Adding finished");
+
     }
 
     public String getCategory() {
