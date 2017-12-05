@@ -51,15 +51,15 @@ public class UserCreatorActivity extends AppCompatActivity {
         Toast.makeText(this, user.getLastName() + " created", Toast.LENGTH_SHORT).show();
 
         RestInterface restClientImpl = RestInterface.retrofit.create(RestInterface.class);
-        Call<Void> user1 = restClientImpl.createUser(user);
-        user1.enqueue(new Callback<Void>() {
+        Call<User> user1 = restClientImpl.createUser(user);
+        user1.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
+            public void onResponse(Call<User> call, Response<User> response) {
                 Toast.makeText(UserCreatorActivity.this, "success --> response code: "+response.code(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {
+            public void onFailure(Call<User> call, Throwable t) {
                 Toast.makeText(UserCreatorActivity.this, "Failure", Toast.LENGTH_SHORT).show();
                 System.out.println(call.toString());
                 System.out.println(t.getLocalizedMessage());

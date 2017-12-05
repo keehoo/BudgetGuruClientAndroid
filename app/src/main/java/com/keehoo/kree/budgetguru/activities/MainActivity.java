@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.keehoo.kree.budgetguru.R;
+import com.keehoo.kree.budgetguru.repositories.SessionData;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int RC_OCR_CAPTURE = 9003;
 
+    @BindView(R.id.current_user)
+    TextView currentUserTextView;
 
     @BindView(R.id.create_new_user)
     Button createUserButton;
@@ -35,8 +39,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        setCurrentUserView();
 
     }
+
+    private void setCurrentUserView() {
+        Long currentUserId = new SessionData(this).getLoggedUserId();
+        currentUserTextView.setText("Current User Id: "+currentUserId);
+    }
+
     @OnClick(R.id.create_new_user)
      void startNewUserActivity() {
         startActivity(new Intent(MainActivity.this, UserCreatorActivity.class));
@@ -73,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode == RC_OCR_CAPTURE) {
             if (resultCode == CommonStatusCodes.SUCCESS) {
                 if (data != null) {
-
                     String result = data.getStringExtra("ocred_text");
                     Log.d(this.getPackageCodePath(), result);
                     Intent intentWithResults = new Intent(this, OcrResultAnalysisActivity.class);

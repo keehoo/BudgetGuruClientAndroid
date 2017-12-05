@@ -30,7 +30,7 @@ public interface RestInterface {
     Call<List<String>> getAll();
 
     @POST("users/addUser")
-    Call<Void> createUser(@Body User user);
+    Call<User> createUser(@Body User user);
 
     @POST("budget/add")
     Call<Void> addBudget(@Body BudgetEntryModel budgetEntry);

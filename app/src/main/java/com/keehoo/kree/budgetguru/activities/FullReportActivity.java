@@ -16,6 +16,7 @@ import com.keehoo.kree.budgetguru.activities.adapters.OcrResultAdapter;
 import com.keehoo.kree.budgetguru.data_models.BudgetEntryModel;
 import com.keehoo.kree.budgetguru.data_models.BudgetItem;
 import com.keehoo.kree.budgetguru.database.AppDatabase;
+import com.keehoo.kree.budgetguru.repositories.SessionData;
 import com.keehoo.kree.budgetguru.rest.RestInterface;
 
 import java.math.BigDecimal;
@@ -74,18 +75,14 @@ public class FullReportActivity extends AppCompatActivity {
         String dateOnly = null;
         if (matcher.find()) {
             dateOnly = matcher.group(0);
-
             System.out.println(matcher.group(0));
             System.out.println(matcher.group(1));
-            //       System.out.println(matcher.group(2));
-            //       System.out.println(matcher.group(3));
         }
         if (dateOnly != null) {
             date.setText(dateOnly);
         } else {
             date.setText(intent.getStringExtra("date"));
         }
-
         time.setText(intent.getStringExtra("time"));
         categoryList = (RecyclerView) findViewById(R.id.category_recycler_view);
         getList();
@@ -94,7 +91,6 @@ public class FullReportActivity extends AppCompatActivity {
     }
 
     private void getList() {
-
         Call<List<String>> getAllCats = restInterface.getAll();
         getAllCats.enqueue(new Callback<List<String>>() {
             @Override
@@ -136,15 +132,13 @@ public class FullReportActivity extends AppCompatActivity {
         String sumString = sum.getText().toString().replace(",", ".");
         Double sumDouble = Double.valueOf(sumString);
 
-
         final BudgetEntryModel budgetEntry = new BudgetEntryModel();
 
         budgetEntry.setBudgetItem(new BudgetItem(new BigDecimal(sumDouble)));
-
         budgetEntry.setDateOfCost(date.getText().toString());
         budgetEntry.setTimeOfCost(time.getText().toString());
         budgetEntry.setCategory(category);
-        budgetEntry.setUser(38);
+        budgetEntry.setUser(new SessionData(this).getLoggedUserId());
 
 
         Call<Void> addBudgetEntry = restInterface.addBudget(budgetEntry);

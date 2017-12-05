@@ -23,6 +23,7 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.keehoo.kree.budgetguru.R;
 import com.keehoo.kree.budgetguru.data_models.User;
+import com.keehoo.kree.budgetguru.repositories.SessionData;
 import com.keehoo.kree.budgetguru.rest.RestInterface;
 import com.squareup.picasso.Picasso;
 
@@ -114,17 +115,23 @@ public class LoginActivity extends AppCompatActivity {
                 Picasso.with(this).load(acct.getPhotoUrl()).into(imageView);
             }
 
-            User user = new User(acct.getGivenName(), acct.getGivenName(), acct.getFamilyName(), acct.getEmail(), acct.getDisplayName());
+            final User user = new User(acct.getGivenName()+"@"+acct.getEmail(), acct.getGivenName(), acct.getFamilyName(), acct.getEmail(), acct.getDisplayName());
             RestInterface restClientImpl = RestInterface.retrofit.create(RestInterface.class);
-            Call<Void> user1 = restClientImpl.createUser(user);
-            user1.enqueue(new Callback<Void>() {
+            final Call<User> user1 = restClientImpl.createUser(user);
+            user1.enqueue(new Callback<User>() {
                 @Override
-                public void onResponse(Call<Void> call, Response<Void> response) {
-                    Toast.makeText(LoginActivity.this, "success --> response code: "+response.code(), Toast.LENGTH_SHORT).show();
+                public void onResponse(Call<User> call, Response<User> response) {
+
+                    User retrieved = response.body();
+
+                    Toast.makeText(LoginActivity.this, "Retrieved user id : "+retrieved.getId(), Toast.LENGTH_LONG).show();
+
+                    new SessionData(LoginActivity.this).saveCurrentLoggedInUser(retrieved.getId());
+                    new SessionData(LoginActivity.this).saveCurrentUserLogin(retrieved.getName());
                 }
 
                 @Override
-                public void onFailure(Call<Void> call, Throwable t) {
+                public void onFailure(Call<User> call, Throwable t) {
                     Toast.makeText(LoginActivity.this, "Failure", Toast.LENGTH_SHORT).show();
                     System.out.println(call.toString());
                     System.out.println(t.getLocalizedMessage());

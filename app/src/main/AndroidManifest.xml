@@ -57,7 +57,11 @@
         <activity
             android:name=".activities.LocalDatabaseActivity"
             android:label="@string/title_activity_local_database"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <service
+            android:name=".BudgetEntriesUploader"
+            android:exported="false"></service>
     </application>
 
 </manifest>
