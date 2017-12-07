@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     Button createBudgetEntryButton;
     @BindView(R.id.login)
     Button loginButton;
+    @BindView(R.id.rxjava)
+    Button rxjava;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,5 +37,10 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.create_budget_entry)
      void startNewBudgetEntryActivity() {
         startActivity(new Intent(MainActivity.this, BudgetEntryActivity.class));
+    }
+
+    @OnClick(R.id.rxjava)
+    void startRxJavaActivity() {
+        startActivity(new Intent(MainActivity.this, RxJavaActivity.class));
     }
 }

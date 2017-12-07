@@ -19,7 +19,8 @@
         </activity>
         <activity android:name=".activities.UserCreatorActivity" />
         <activity android:name=".rest.GetUser" />
-        <activity android:name=".activities.BudgetEntryActivity"></activity>
+        <activity android:name=".activities.BudgetEntryActivity" />
+        <activity android:name=".activities.RxJavaActivity"></activity>
     </application>
 
 </manifest>

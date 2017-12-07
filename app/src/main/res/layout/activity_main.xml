@@ -24,4 +24,10 @@ android:orientation="vertical"
         android:id="@+id/login"
         android:text="log in"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rxjava"
+        android:text="RxJava2"/>
+
 </LinearLayout>
