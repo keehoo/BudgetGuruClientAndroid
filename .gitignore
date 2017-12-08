@@ -1,1 +1,16 @@
 # Created by .ignore support plugin (hsz.mobi)
+.DS_Store
+.gradle/
+.idea/compiler.xml
+.idea/copyright/
+.idea/libraries/
+.idea/misc.xml
+.idea/modules.xml
+.idea/runConfigurations.xml
+.idea/workspace.xml
+BudgetGuru.iml
+app/.DS_Store
+app/build/
+app/libs/
+app/sampledata/
+build/
