@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.google.android.gms.common.api.CommonStatusCodes;
 import com.keehoo.kree.budgetguru.Data;
 import com.keehoo.kree.budgetguru.R;
 import com.keehoo.kree.budgetguru.data_models.BudgetEntryModel;
@@ -25,7 +27,9 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements ChartFiller {
 
@@ -33,6 +37,9 @@ public class MainActivity extends AppCompatActivity implements ChartFiller {
     public static final String FULL_USER_NAME = "full_user_name";
     public static final String LOGGED_IN = "logged_in";
     public static final String PIC_URL = "pic_url";
+
+    @BindView(R.id.imageButton5)
+    ImageButton ocrButton;
 
   /*  @BindView(R.id.current_user)
     TextView currentUserTextView;
@@ -50,24 +57,14 @@ public class MainActivity extends AppCompatActivity implements ChartFiller {
 
     private PieChart mChart;
 
-    protected String[] mMonths = new String[]{
-            "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"
-    };
-
-    protected String[] mParties = new String[]{
-            "Party A", "Party B", "Party C", "Party D", "Party E", "Party F", "Party G", "Party H",
-            "Party I", "Party J", "Party K", "Party L", "Party M", "Party N", "Party O", "Party P",
-            "Party Q", "Party R", "Party S", "Party T", "Party U", "Party V", "Party W", "Party X",
-            "Party Y", "Party Z"
-    };
     private Long currentUserId;
     private List<BudgetEntryModel> budgetEntryModels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         if (!SessionData.isLogged()) {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
@@ -209,6 +206,37 @@ public class MainActivity extends AppCompatActivity implements ChartFiller {
         budgetEntryModels = listOfEntries;
         //setMainScreenChartData(3, 100);
         setupMainScreenChart();
+    }
+
+    @OnClick(R.id.imageButton5)
+    void startOcrActivity() {
+        Intent intent = new Intent(this, OcrActivity.class);
+        intent.putExtra(OcrActivity.AutoFocus, true);
+        intent.putExtra(OcrActivity.UseFlash, false);
+
+        startActivityForResult(intent, RC_OCR_CAPTURE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == RC_OCR_CAPTURE) {
+            if (resultCode == CommonStatusCodes.SUCCESS) {
+                if (data != null) {
+                    String result = data.getStringExtra("ocred_text");
+                    Log.d(this.getPackageCodePath(), result);
+                    Intent intentWithResults = new Intent(this, OcrResultAnalysisActivity.class);
+                    intentWithResults.putExtra("ocr_results", result);
+                  //  startActivity(intentWithResults);
+                } else {
+                    Toast.makeText(this, "text is null", Toast.LENGTH_LONG).show();
+                }
+            } else {
+
+            }
+        }
+        else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }
 /*
