@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -14,15 +16,18 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.keehoo.kree.budgetguru.Data;
 import com.keehoo.kree.budgetguru.R;
+import com.keehoo.kree.budgetguru.data_models.BudgetEntryModel;
 import com.keehoo.kree.budgetguru.repositories.SessionData;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ChartFiller {
 
     private static final int RC_OCR_CAPTURE = 9003;
     public static final String FULL_USER_NAME = "full_user_name";
@@ -56,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
             "Party Y", "Party Z"
     };
     private Long currentUserId;
+    private List<BudgetEntryModel> budgetEntryModels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +74,15 @@ public class MainActivity extends AppCompatActivity {
         }
         setUserNameField();
         setCurrentUserView();
-        setupMainScreenChart();
+        //tryToFillChart();
+       // setupMainScreenChart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        tryToFillChart();
+
     }
 
     @Override
@@ -148,14 +162,22 @@ public class MainActivity extends AppCompatActivity {
         mChart.setEntryLabelTextSize(12f);
     }
 
+    private void tryToFillChart() {
+        new Data(this).getAllBudgetEntries();
+    }
+
 
     private void setMainScreenChartData(int count, float range) {
 
+
         ArrayList<PieEntry> values = new ArrayList<PieEntry>();
 
-        for (int i = 0; i < count; i++) {
-            values.add(new PieEntry((float) ((Math.random() * range) + range / 5), mParties[i % mParties.length]));
+        for (BudgetEntryModel b : budgetEntryModels) {
+            values.add(new PieEntry((float) b.getValue(), b.getCategory()));
         }
+//        for (int i = 0; i < count; i++) {
+//            values.add(new PieEntry((float) ((Math.random() * range) + range / 5), mParties[i % mParties.length]));
+//        }
 
         PieDataSet dataSet = new PieDataSet(values, "Election Results");
         dataSet.setSliceSpace(3f);
@@ -171,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
         data.setValueTextColor(Color.WHITE);
         // data.setValueTypeface(mTfLight);
         mChart.setData(data);
-
+        Log.d("FILLER", "got a signal to fill up chart");
         mChart.invalidate();
     }
 
@@ -179,6 +201,14 @@ public class MainActivity extends AppCompatActivity {
     private void setCurrentUserView() {
         currentUserId = new SessionData(this).getLoggedUserId();
         //currentUserTextView.setText("Current User Id: "+currentUserId);
+    }
+
+    @Override
+    public void fillChart(List<BudgetEntryModel> listOfEntries) {
+        Toast.makeText(this, "Got a signal to fill chart", Toast.LENGTH_SHORT).show();
+        budgetEntryModels = listOfEntries;
+        //setMainScreenChartData(3, 100);
+        setupMainScreenChart();
     }
 }
 /*

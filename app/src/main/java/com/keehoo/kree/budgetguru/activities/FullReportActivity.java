@@ -91,7 +91,7 @@ public class FullReportActivity extends AppCompatActivity {
     }
 
     private void getList() {
-        Call<List<String>> getAllCats = restInterface.getAll();
+        Call<List<String>> getAllCats = restInterface.getAllUsers();
         getAllCats.enqueue(new Callback<List<String>>() {
             @Override
             public void onResponse(Call<List<String>> call, Response<List<String>> response) {
