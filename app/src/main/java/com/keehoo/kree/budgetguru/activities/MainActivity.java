@@ -1,13 +1,8 @@
 package com.keehoo.kree.budgetguru.activities;
 
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.RelativeSizeSpan;
-import android.text.style.StyleSpan;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -16,7 +11,6 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.keehoo.kree.budgetguru.R;
 
 import java.util.ArrayList;
@@ -41,11 +35,11 @@ public class MainActivity extends AppCompatActivity {
 
     private PieChart mChart;
 
-    protected String[] mMonths = new String[] {
+    protected String[] mMonths = new String[]{
             "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"
     };
 
-    protected String[] mParties = new String[] {
+    protected String[] mParties = new String[]{
             "Party A", "Party B", "Party C", "Party D", "Party E", "Party F", "Party G", "Party H",
             "Party I", "Party J", "Party K", "Party L", "Party M", "Party N", "Party O", "Party P",
             "Party Q", "Party R", "Party S", "Party T", "Party U", "Party V", "Party W", "Party X",
@@ -64,15 +58,15 @@ public class MainActivity extends AppCompatActivity {
         mChart = (PieChart) findViewById(R.id.chart1);
         mChart.setBackgroundColor(Color.TRANSPARENT);
 
-        moveOffScreen();
+        //  moveOffScreen();
 
-       // mChart.setLayoutParams(new WindowManager.LayoutParams(200, 200, 200, 200, 0, 0, 0));
+        // mChart.setLayoutParams(new WindowManager.LayoutParams(200, 200, 200, 200, 0, 0, 0));
 
         mChart.setUsePercentValues(true);
         mChart.getDescription().setEnabled(false);
 
-       // mChart.setCenterTextTypeface(mTfLight);
-        mChart.setCenterText(generateCenterSpannableText());
+        // mChart.setCenterTextTypeface(mTfLight);
+        // mChart.setCenterText(generateCenterSpannableText());
 
         mChart.setDrawHoleEnabled(true);
         mChart.setHoleColor(Color.TRANSPARENT);
@@ -92,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         mChart.setRotationAngle(180f);
         mChart.setCenterTextOffset(0, -20);
 
-        setData(4, 100);
+        setData(3, 100);
 
         mChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
 
@@ -112,8 +106,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
     private void setData(int count, float range) {
 
         ArrayList<PieEntry> values = new ArrayList<PieEntry>();
@@ -126,32 +118,34 @@ public class MainActivity extends AppCompatActivity {
         dataSet.setSliceSpace(3f);
         dataSet.setSelectionShift(5f);
 
-        dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+        dataSet.setColors(R.color.colorPrimary, R.color.colorAccent, R.color.colorPrimaryDark);
+
         dataSet.setSelectionShift(0f);
 
         PieData data = new PieData(dataSet);
         data.setValueFormatter(new PercentFormatter());
         data.setValueTextSize(11f);
         data.setValueTextColor(Color.WHITE);
-       // data.setValueTypeface(mTfLight);
+        // data.setValueTypeface(mTfLight);
         mChart.setData(data);
 
         mChart.invalidate();
     }
 
-    private SpannableString generateCenterSpannableText() {
+    //  private SpannableString generateCenterSpannableText() {
 
-        SpannableString s = new SpannableString("MPAndroidChart\ndeveloped by Philipp Jahoda");
+     /*   SpannableString s = new SpannableString("Expenses this week");
         s.setSpan(new RelativeSizeSpan(1.7f), 0, 14, 0);
-        s.setSpan(new StyleSpan(Typeface.NORMAL), 14, s.length() - 15, 0);
+//        s.setSpan(new StyleSpan(Typeface.NORMAL), 14, s.length() - 15, 0);
         s.setSpan(new ForegroundColorSpan(Color.GRAY), 14, s.length() - 15, 0);
         s.setSpan(new RelativeSizeSpan(.8f), 14, s.length() - 15, 0);
         s.setSpan(new StyleSpan(Typeface.ITALIC), s.length() - 14, s.length(), 0);
         s.setSpan(new ForegroundColorSpan(ColorTemplate.getHoloBlue()), s.length() - 14, s.length(), 0);
-        return s;
-    }
+        return s;*/
+}
 
-    private void moveOffScreen() {
+
+//  private void moveOffScreen() {
 /*
         Display display = getWindowManager().getDefaultDisplay();
         int height = display.getHeight();  // deprecated
@@ -162,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
                 (RelativeLayout.LayoutParams)mChart.getLayoutParams();
         rlParams.setMargins(0, 0, 0, -offset);
         mChart.setLayoutParams(rlParams);*/
-    }
+//  }
 
   /*  private void setCurrentUserView() {
         Long currentUserId = new SessionData(this).getLoggedUserId();
@@ -221,4 +215,4 @@ public class MainActivity extends AppCompatActivity {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }*/
-}
+
