@@ -135,6 +135,7 @@ public class LoginActivity extends AppCompatActivity {
                     SessionData.setLogged(true);
 
                     LoginActivity.this.startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    finish();
                 }
 
                 @Override

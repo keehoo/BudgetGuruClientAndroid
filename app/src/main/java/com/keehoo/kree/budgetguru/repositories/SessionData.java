@@ -17,7 +17,7 @@ public class SessionData {
     private static final String CURRENT_USER_LAST_NAME = "CURRENT_USER_LAST_NAME";
     private static final String USER_PHOTO_URL = "user_photo_url";
 
-    private static boolean isLogged = false;
+    private static boolean isLogged;
     private String currentUserLogin;
 
     private long currentUserId;

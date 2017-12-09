@@ -38,7 +38,8 @@
             android:label="Read Text" />
         <activity android:name=".activities.OcrResultAnalysisActivity" />
         <activity android:name=".activities.FullReportActivity" />
-        <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.LoginActivity"
+            android:excludeFromRecents="true"/>
         <activity
             android:name=".activities.LocalDatabaseActivity"
             android:label="@string/title_activity_local_database"
