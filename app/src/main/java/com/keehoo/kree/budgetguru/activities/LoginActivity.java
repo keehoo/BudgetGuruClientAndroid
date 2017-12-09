@@ -83,6 +83,8 @@ public class LoginActivity extends AppCompatActivity {
                 startActivityForResult(signInIntent, RC_SIGN_IN);
             }
         });
+        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
     @Override
@@ -92,15 +94,15 @@ public class LoginActivity extends AppCompatActivity {
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            handleSignInResult(result);
+            handleSignInResult(result, new SessionData(LoginActivity.this));
         }
     }
 
-    private void handleSignInResult(GoogleSignInResult result) {
+    private void handleSignInResult(GoogleSignInResult result, final SessionData sessionData) {
         Log.d("Login Activity", "handleSignInResult:" + result.isSuccess());
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
-            GoogleSignInAccount acct = result.getSignInAccount();
+            final GoogleSignInAccount acct = result.getSignInAccount();
             //mStatusTextView.setText(getString(R.string.signed_in_fmt, acct.getDisplayName()));
            // updateUI(true);
             Toast.makeText(this, acct.getDisplayName(), Toast.LENGTH_SHORT).show();
@@ -126,8 +128,13 @@ public class LoginActivity extends AppCompatActivity {
 
                     Toast.makeText(LoginActivity.this, "Retrieved user id : "+retrieved.getId(), Toast.LENGTH_LONG).show();
 
-                    new SessionData(LoginActivity.this).saveCurrentLoggedInUser(retrieved.getId());
-                    new SessionData(LoginActivity.this).saveCurrentUserLogin(retrieved.getName());
+                    sessionData.saveUserPicUrl(acct.getPhotoUrl());
+                    sessionData.saveCurrentLoggedInUser(retrieved.getId());
+                    sessionData.saveCurrentUserLogin(acct.getDisplayName());
+                    sessionData.saveCurrentUserLastName(retrieved.getLastName());
+                    SessionData.setLogged(true);
+
+                    LoginActivity.this.startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 }
 
                 @Override

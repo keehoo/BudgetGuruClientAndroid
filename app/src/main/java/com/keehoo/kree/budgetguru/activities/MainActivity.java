@@ -1,8 +1,11 @@
 package com.keehoo.kree.budgetguru.activities;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -12,14 +15,18 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.keehoo.kree.budgetguru.R;
+import com.keehoo.kree.budgetguru.repositories.SessionData;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
 
-/*    private static final int RC_OCR_CAPTURE = 9003;
+    private static final int RC_OCR_CAPTURE = 9003;
 
-    @BindView(R.id.current_user)
+  /*  @BindView(R.id.current_user)
     TextView currentUserTextView;
 
     @BindView(R.id.create_new_user)
@@ -45,16 +52,35 @@ public class MainActivity extends AppCompatActivity {
             "Party Q", "Party R", "Party S", "Party T", "Party U", "Party V", "Party W", "Party X",
             "Party Y", "Party Z"
     };
+    private Long currentUserId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //ButterKnife.bind(this);
+        ButterKnife.bind(this);
       /*  getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
         setContentView(R.layout.activity_main);
-        //setCurrentUserView();
+        if (!SessionData.isLogged()) {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+        }
+        setUserNameField();
+        setCurrentUserView();
+        setupMainScreenChart();
+    }
 
+    private void setUserNameField() {
+
+        SessionData sessionData = new SessionData(this);
+        TextView userName = (TextView) findViewById(R.id.userName_id);
+        userName.setText(new StringBuilder().append(sessionData.getLoggedUserName()).toString());
+        ImageView userImage = (ImageView) findViewById(R.id.imageView);
+        if (null != sessionData.getPicUrl())
+            Picasso.with(this).load(sessionData.getPicUrl()).into(userImage);
+    }
+
+    private void setupMainScreenChart() {
         mChart = (PieChart) findViewById(R.id.chart1);
         mChart.setBackgroundColor(Color.TRANSPARENT);
 
@@ -86,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         mChart.setRotationAngle(180f);
         mChart.setCenterTextOffset(0, -20);
 
-        setData(3, 100);
+        setMainScreenChartData(3, 100);
 
         mChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
 
@@ -106,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void setData(int count, float range) {
+    private void setMainScreenChartData(int count, float range) {
 
         ArrayList<PieEntry> values = new ArrayList<PieEntry>();
 
@@ -132,37 +158,13 @@ public class MainActivity extends AppCompatActivity {
         mChart.invalidate();
     }
 
-    //  private SpannableString generateCenterSpannableText() {
 
-     /*   SpannableString s = new SpannableString("Expenses this week");
-        s.setSpan(new RelativeSizeSpan(1.7f), 0, 14, 0);
-//        s.setSpan(new StyleSpan(Typeface.NORMAL), 14, s.length() - 15, 0);
-        s.setSpan(new ForegroundColorSpan(Color.GRAY), 14, s.length() - 15, 0);
-        s.setSpan(new RelativeSizeSpan(.8f), 14, s.length() - 15, 0);
-        s.setSpan(new StyleSpan(Typeface.ITALIC), s.length() - 14, s.length(), 0);
-        s.setSpan(new ForegroundColorSpan(ColorTemplate.getHoloBlue()), s.length() - 14, s.length(), 0);
-        return s;*/
-}
-
-
-//  private void moveOffScreen() {
-/*
-        Display display = getWindowManager().getDefaultDisplay();
-        int height = display.getHeight();  // deprecated
-
-        int offset = (int)(height * 0.65); *//* percent to move *//*
-
-        RelativeLayout.LayoutParams rlParams =
-                (RelativeLayout.LayoutParams)mChart.getLayoutParams();
-        rlParams.setMargins(0, 0, 0, -offset);
-        mChart.setLayoutParams(rlParams);*/
-//  }
-
-  /*  private void setCurrentUserView() {
-        Long currentUserId = new SessionData(this).getLoggedUserId();
-        currentUserTextView.setText("Current User Id: "+currentUserId);
+    private void setCurrentUserView() {
+        currentUserId = new SessionData(this).getLoggedUserId();
+        //currentUserTextView.setText("Current User Id: "+currentUserId);
     }
-
+}
+/*
     @OnClick(R.id.create_new_user)
      void startNewUserActivity() {
         startActivity(new Intent(MainActivity.this, UserCreatorActivity.class));

@@ -2,6 +2,7 @@ package com.keehoo.kree.budgetguru.repositories;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Uri;
 
 import com.keehoo.kree.budgetguru.R;
 
@@ -13,10 +14,22 @@ public class SessionData {
 
     public static final String CURRENT_USER_ID = "CURRENT_USER_ID";
     public static final String CURRENT_USER_NAME = "CURRENT_USER_NAME";
+    public static final String CURRENT_USER_LAST_NAME = "CURRENT_USER_LAST_NAME";
+    public static final String USER_PHOTO_URL = "user_photo_url";
     private Context context;
 
+    private static boolean isLogged = false;
     private String currentUserLogin;
+
     private long currentUserId;
+
+    public static boolean isLogged() {
+        return isLogged;
+    }
+
+    public static void setLogged(boolean logged) {
+        isLogged = logged;
+    }
     private SharedPreferences preferences;
 
     public SessionData(Context context) {
@@ -39,5 +52,25 @@ public class SessionData {
 
     public boolean saveCurrentUserLogin(String userName) {
         return preferences.edit().putString(CURRENT_USER_NAME, userName).commit();
+    }
+
+    public boolean saveCurrentUserLastName(String lastName) {
+        return preferences.edit().putString(CURRENT_USER_LAST_NAME, lastName).commit();
+    }
+
+    public String getUserLastName() {
+        return preferences.getString(CURRENT_USER_LAST_NAME, "");
+    }
+
+    public void saveUserPicUrl(Uri photoUrl) {
+        preferences.edit().putString(USER_PHOTO_URL, photoUrl.toString()).commit();
+    }
+
+    public Uri getPicUrl() {
+        String url = preferences.getString(USER_PHOTO_URL, null);
+        if (url != null) {
+            return Uri.parse(preferences.getString(USER_PHOTO_URL, null));
+        }
+        else return null;
     }
 }
