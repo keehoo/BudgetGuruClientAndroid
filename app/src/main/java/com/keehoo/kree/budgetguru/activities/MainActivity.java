@@ -25,6 +25,9 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
 
     private static final int RC_OCR_CAPTURE = 9003;
+    public static final String FULL_USER_NAME = "full_user_name";
+    public static final String LOGGED_IN = "logged_in";
+    public static final String PIC_URL = "pic_url";
 
   /*  @BindView(R.id.current_user)
     TextView currentUserTextView;
@@ -58,8 +61,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
-      /*  getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
         setContentView(R.layout.activity_main);
         if (!SessionData.isLogged()) {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
@@ -68,6 +69,22 @@ public class MainActivity extends AppCompatActivity {
         setUserNameField();
         setCurrentUserView();
         setupMainScreenChart();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        SessionData sessionData = new SessionData(this);
+        Bundle bundle = new Bundle();
+        bundle.putString(FULL_USER_NAME, sessionData.getLoggedUserName());
+        bundle.putBoolean(LOGGED_IN, SessionData.isLogged());
+        bundle.putString(PIC_URL, sessionData.getPicUrl().toString());
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        // TODO: restore field values;
+        super.onRestoreInstanceState(savedInstanceState);
     }
 
     private void setUserNameField() {

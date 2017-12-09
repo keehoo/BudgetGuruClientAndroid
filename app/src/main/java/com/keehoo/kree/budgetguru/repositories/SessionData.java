@@ -12,11 +12,10 @@ import com.keehoo.kree.budgetguru.R;
 
 public class SessionData {
 
-    public static final String CURRENT_USER_ID = "CURRENT_USER_ID";
-    public static final String CURRENT_USER_NAME = "CURRENT_USER_NAME";
-    public static final String CURRENT_USER_LAST_NAME = "CURRENT_USER_LAST_NAME";
-    public static final String USER_PHOTO_URL = "user_photo_url";
-    private Context context;
+    private static final String CURRENT_USER_ID = "CURRENT_USER_ID";
+    private static final String CURRENT_USER_NAME = "CURRENT_USER_NAME";
+    private static final String CURRENT_USER_LAST_NAME = "CURRENT_USER_LAST_NAME";
+    private static final String USER_PHOTO_URL = "user_photo_url";
 
     private static boolean isLogged = false;
     private String currentUserLogin;
@@ -33,7 +32,6 @@ public class SessionData {
     private SharedPreferences preferences;
 
     public SessionData(Context context) {
-        this.context = context;
          preferences = context.getSharedPreferences(
                 context.getString(R.string.session_preferences), Context.MODE_PRIVATE);
     }
