@@ -13,4 +13,5 @@
     <string name="session_preferences">budget_guru_session_data</string>
     <string name="local_db">Local db</string>
     <string name="title_activity_local_database">LocalDatabaseActivity</string>
+    <string name="budget_guru_2018">Budget Guru 2018</string>
 </resources>
