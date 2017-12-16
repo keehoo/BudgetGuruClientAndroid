@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements ChartFiller {
         setUserNameField();
         setCurrentUserView();
         //tryToFillChart();
-       // setupMainScreenChart();
+        // setupMainScreenChart();
     }
 
     @Override
@@ -88,7 +88,9 @@ public class MainActivity extends AppCompatActivity implements ChartFiller {
         Bundle bundle = new Bundle();
         bundle.putString(FULL_USER_NAME, sessionData.getLoggedUserName());
         bundle.putBoolean(LOGGED_IN, SessionData.isLogged());
-        bundle.putString(PIC_URL, sessionData.getPicUrl().toString());
+        if (null != sessionData.getPicUrl()) {
+            bundle.putString(PIC_URL, sessionData.getPicUrl().toString());
+        }
         super.onSaveInstanceState(outState);
     }
 
@@ -219,22 +221,21 @@ public class MainActivity extends AppCompatActivity implements ChartFiller {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == RC_OCR_CAPTURE) {
+        if (requestCode == RC_OCR_CAPTURE) {
             if (resultCode == CommonStatusCodes.SUCCESS) {
                 if (data != null) {
                     String result = data.getStringExtra("ocred_text");
                     Log.d(this.getPackageCodePath(), result);
                     Intent intentWithResults = new Intent(this, OcrResultAnalysisActivity.class);
                     intentWithResults.putExtra("ocr_results", result);
-                  //  startActivity(intentWithResults);
+                    startActivity(intentWithResults);
                 } else {
                     Toast.makeText(this, "text is null", Toast.LENGTH_LONG).show();
                 }
             } else {
 
             }
-        }
-        else {
+        } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }

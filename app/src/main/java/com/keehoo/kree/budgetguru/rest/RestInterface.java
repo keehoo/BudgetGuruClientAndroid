@@ -35,8 +35,8 @@ public interface RestInterface {
     @GET("users/allUsers")
     Call<List<User>> listUsers();
 
-    @GET("category/getAllUsers")
-    Call<List<String>> getAllUsers();
+    @GET("category/getAll")
+    Call<List<String>> getAllCategories();
 
     @GET("budget/allBudgets")
     Observable<List<BudgetEntryModel>> getAll();

@@ -91,7 +91,7 @@ public class FullReportActivity extends AppCompatActivity {
     }
 
     private void getList() {
-        Call<List<String>> getAllCats = restInterface.getAllUsers();
+        Call<List<String>> getAllCats = restInterface.getAllCategories();
         getAllCats.enqueue(new Callback<List<String>>() {
             @Override
             public void onResponse(Call<List<String>> call, Response<List<String>> response) {
@@ -103,12 +103,7 @@ public class FullReportActivity extends AppCompatActivity {
                 }
 
                 CategoryListAdapter adapter = new CategoryListAdapter(FullReportActivity.this, catList);
-                adapter.setOnItemClickListener(new CategoryListAdapter.OnItemClickListener() {
-                    @Override
-                    public void onClick(int position, String object) {
-                        setCategoryFieldAndUpdateTextView(object);
-                    }
-                });
+                adapter.setOnItemClickListener((position, object) -> setCategoryFieldAndUpdateTextView(object));
                 categoryList.setLayoutManager(new LinearLayoutManager(FullReportActivity.this));
                 categoryList.setAdapter(adapter);
             }
