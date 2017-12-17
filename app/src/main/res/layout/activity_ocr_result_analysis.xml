@@ -6,10 +6,19 @@
     android:layout_height="wrap_content"
     tools:context="com.keehoo.kree.budgetguru.activities.OcrResultAnalysisActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/please_choose_an_item_to_edit_its_value_if_necessary"
+        android:textColor="@android:color/background_dark"
+        android:textSize="15sp"
+        android:paddingBottom="20dp"/>
+
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/recycler_view"
+        android:paddingBottom="20dp"
         />
     <Button
         android:layout_width="match_parent"

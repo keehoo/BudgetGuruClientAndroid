@@ -36,7 +36,9 @@
         <activity
             android:name=".activities.OcrActivity"
             android:label="Read Text" />
-        <activity android:name=".activities.OcrResultAnalysisActivity" />
+        <activity android:name=".activities.OcrResultAnalysisActivity"
+            android:theme="@style/Theme.AppCompat.Dialog.Alert"
+            />
         <activity android:name=".activities.FullReportActivity" />
         <activity android:name=".activities.LoginActivity"
             android:excludeFromRecents="true"/>

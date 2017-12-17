@@ -14,4 +14,8 @@
     <string name="local_db">Local db</string>
     <string name="title_activity_local_database">LocalDatabaseActivity</string>
     <string name="budget_guru_2018">Budget Guru 2018</string>
+    <string name="please_choose_an_item_to_edit_its_value_if_necessary">Please choose an item to edit its value if necessary</string>
+    <string name="receipt_value">Receipt value</string>
+    <string name="time">time</string>
+    <string name="date">date</string>
 </resources>

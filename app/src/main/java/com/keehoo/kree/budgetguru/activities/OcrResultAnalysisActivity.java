@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.vision.text.Line;
 import com.google.gson.Gson;
@@ -50,9 +51,15 @@ public class OcrResultAnalysisActivity extends AppCompatActivity {
         if (!listToBePassedToAdapter.isEmpty()) {
             RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
             OcrResultAdapter adapter = new OcrResultAdapter(this, listToBePassedToAdapter);
+            adapter.setItemClickListener((currentObject, currentPosition) -> startEditValueActivity(currentObject, currentPosition));
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
             recyclerView.setAdapter(adapter);
         }
+    }
+
+    private void startEditValueActivity(String currentObject, int currentPosition) {
+        Toast.makeText(this, "Starting activity to edit the value "+currentObject, Toast.LENGTH_SHORT).show();
     }
 
     private OcrResultWrapper analyzeLines() {

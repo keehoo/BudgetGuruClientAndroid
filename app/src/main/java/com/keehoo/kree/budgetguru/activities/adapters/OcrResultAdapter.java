@@ -25,8 +25,9 @@ public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrV
     private List<OcrResultWrapper> data;
     private LayoutInflater layoutInflater;
     private Context context;
+    private OrcResultAdapterOnClickListener listener;
 
-    public OcrResultAdapter(Context context, List<OcrResultWrapper> dataOfStuff) {
+    public OcrResultAdapter(Context context, List<OcrResultWrapper> dataOfStuff)  {
         this.context = context;
         this.data = dataOfStuff;
         this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -36,6 +37,10 @@ public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrV
     public OcrViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = layoutInflater.inflate(R.layout.item_on_ocr_result_list, parent, false);
         return new OcrViewHolder(v, this);
+    }
+
+    public void setItemClickListener(OrcResultAdapterOnClickListener interfaceListener) {
+        this.listener = interfaceListener;
     }
 
     @Override
@@ -52,7 +57,7 @@ public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrV
         return data.size();
     }
 
-    class OcrViewHolder extends RecyclerView.ViewHolder {
+    class OcrViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView textField;
         TextView data;
@@ -67,6 +72,21 @@ public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrV
             textField = (TextView) itemView.findViewById(R.id.item);
             data = (TextView) itemView.findViewById(R.id.data);
             time = (TextView) itemView.findViewById(R.id.time);
+            itemView.setOnClickListener(this);
         }
+
+
+
+        @Override
+        public void onClick(View view) {
+            if (adapter.listener != null) {
+                listener.onClick(currentObject, currentPosition);
+            }
+        }
+    }
+
+    public interface OrcResultAdapterOnClickListener {
+        void onClick(String currentObject, int currentPosition);
+
     }
 }
