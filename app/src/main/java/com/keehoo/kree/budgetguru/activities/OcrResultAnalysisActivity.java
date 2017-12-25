@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.text.Line;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -26,18 +27,24 @@ import butterknife.OnClick;
 
 public class OcrResultAnalysisActivity extends AppCompatActivity {
 
+    public static final String CURRENT_VALUE = "Current_value";
+    public static final String CURRENT_INDEX = "Current_index";
+    public static final int VAL_EDIT_REQUEST_CODE = 9976;
     @BindView(R.id.seeFullReportButtonId)
     Button seeFullReportButton;
 
     private List<Line> listOfLines;
     private Line sumaLine;
     private OcrResultWrapper ocrResult;
+    private RecyclerView recyclerView;
+    private OcrResultAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ocr_result_analysis);
         ButterKnife.bind(this);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         Intent intent = getIntent();
         String ocrResultList = intent.getExtras().getString("ocr_results");
         Type listType = new TypeToken<ArrayList<Line>>() {
@@ -48,52 +55,84 @@ public class OcrResultAnalysisActivity extends AppCompatActivity {
         listToBePassedToAdapter.add(analyzeLines());
 
 
+        setTheList(listToBePassedToAdapter);
+    }
+
+    private void setTheList(List<OcrResultWrapper> listToBePassedToAdapter) {
         if (!listToBePassedToAdapter.isEmpty()) {
-            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-            OcrResultAdapter adapter = new OcrResultAdapter(this, listToBePassedToAdapter);
+            adapter = new OcrResultAdapter(this, listToBePassedToAdapter);
             adapter.setItemClickListener((currentObject, currentPosition) -> startEditValueActivity(currentObject, currentPosition));
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
             recyclerView.setAdapter(adapter);
         }
     }
 
-    private void startEditValueActivity(String currentObject, int currentPosition) {
-        Toast.makeText(this, "Starting activity to edit the value "+currentObject, Toast.LENGTH_SHORT).show();
+    private void startEditValueActivity(OcrResultWrapper currentObject, int currentPosition) {
+        Intent intent = new Intent(this, ValueEditActivity.class);
+        intent.putExtra(CURRENT_VALUE, new Gson().toJson(currentObject));
+        intent.putExtra(CURRENT_INDEX, currentPosition);
+        startActivityForResult(intent, VAL_EDIT_REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == VAL_EDIT_REQUEST_CODE) {
+            if (resultCode == CommonStatusCodes.SUCCESS) {
+                if (data != null) {
+                    Toast.makeText(this, "Received value "+data.getStringExtra(CURRENT_VALUE), Toast.LENGTH_SHORT).show();
+                    String stringExtra = data.getStringExtra(CURRENT_VALUE);
+                    OcrResultWrapper wrapper = new Gson().fromJson(stringExtra, OcrResultWrapper.class);
+                    List<OcrResultWrapper> list = new ArrayList<>();
+                    list.add(wrapper);
+              //     adapter.notifyDataSetChanged();
+                    adapter.notifuListChanged(list);
+              //      setTheList(list);
+                    recyclerView.setAdapter(adapter);
+                }
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     private OcrResultWrapper analyzeLines() {
+        //TODO: this has to be in different class and written better
         OcrResultWrapper result = new OcrResultWrapper();
-        for (Line line : listOfLines) {
-            Log.d("LINE", line.getValue());
-            if (line.getValue().toUpperCase().contains("suma".toUpperCase())
-                    && !line.getValue().toUpperCase().contains("PTU")
-                    ) {
-                //result.setReceiptTotalValue(line.getValue());
-                //TODO: we've got here the suma line, we need to find the total value to the right of this:
-                Log.d("Adding: ", line.getValue());
-                sumaLine = line;
-            }
-            if (line.getValue().matches(OcrResultAdapter.DATE_REGEX_WITH_DASH1)) {
-                result.setReceiptDate(line.getValue());
-                Log.d("Adding: ", line.getValue());
-            }
+        try {
 
-            if (line.getValue().matches(OcrResultAdapter.TIME_REGEX_WITH_DASH1)) {
-                result.setReceiptTime(line.getValue());
-                Log.d("Adding: ", line.getValue());
+            for (Line line : listOfLines) {
+                Log.d("LINE", line.getValue());
+                if (line.getValue().toUpperCase().contains("suma".toUpperCase())
+                        && !line.getValue().toUpperCase().contains("PTU")
+                        && !line.getValue().toUpperCase().contains("NIP")
+                        ) {
+                    Log.d("Adding: ", line.getValue());
+                    sumaLine = line;
+                }
+                if (line.getValue().matches(OcrResultAdapter.DATE_REGEX_WITH_DASH1)) {
+                    result.setReceiptDate(line.getValue());
+                    Log.d("Adding: ", line.getValue());
+                }
+
+                if (line.getValue().matches(OcrResultAdapter.TIME_REGEX_WITH_DASH1)) {
+                    result.setReceiptTime(line.getValue());
+                    Log.d("Adding: ", line.getValue());
+                }
             }
+            for (Line line : listOfLines) {
+                if (line.equals(sumaLine)) {
+                    continue;
+                }
+                if (line.getBoundingBox().centerY() + 20 > sumaLine.getBoundingBox().centerY() &&
+                        line.getBoundingBox().centerY() - 20 < sumaLine.getBoundingBox().centerY()) {
+                    result.setReceiptTotalValue(line.getValue());
+                }
+            }
+            ocrResult = result;
+        } catch (Throwable t) {
+            Log.e("Reading Error", "Error while reading receipt values :"+t.getLocalizedMessage());
         }
-        for (Line line : listOfLines) {
-            if (line.equals(sumaLine)) {
-                continue;
-            }
-            if (line.getBoundingBox().centerY() + 20 > sumaLine.getBoundingBox().centerY() &&
-                    line.getBoundingBox().centerY() - 20 < sumaLine.getBoundingBox().centerY()) {
-                result.setReceiptTotalValue(line.getValue());
-            }
-        }
-        ocrResult = result;
         return result;
     }
 

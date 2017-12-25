@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.keehoo.kree.budgetguru.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,7 +30,7 @@ public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrV
 
     public OcrResultAdapter(Context context, List<OcrResultWrapper> dataOfStuff)  {
         this.context = context;
-        this.data = dataOfStuff;
+        this.data = new ArrayList<>(dataOfStuff);
         this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -50,11 +51,24 @@ public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrV
         holder.textField.setText("Suma z paragonu: " + item.getReceiptTotalValue());
         holder.data.setText("Data: "+ item.getReceiptDate());
         holder.time.setText("Time: "+ item.getReceiptTime());
+        holder.currentObject = item;
+        holder.currentPosition = position;
+
     }
 
     @Override
     public int getItemCount() {
         return data.size();
+    }
+
+    public void notifuListChanged(List<OcrResultWrapper> list) {
+        if (data != null) {
+            data.clear();
+            data.addAll(list);
+        } else {
+            data = list;
+        }
+        notifyDataSetChanged();
     }
 
     class OcrViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -63,7 +77,7 @@ public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrV
         TextView data;
         TextView time;
         public int currentPosition;
-        public String currentObject;
+        OcrResultWrapper currentObject;
         public OcrResultAdapter adapter;
 
         public OcrViewHolder(View itemView, OcrResultAdapter adapter) {
@@ -72,6 +86,8 @@ public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrV
             textField = (TextView) itemView.findViewById(R.id.item);
             data = (TextView) itemView.findViewById(R.id.data);
             time = (TextView) itemView.findViewById(R.id.time);
+
+
             itemView.setOnClickListener(this);
         }
 
@@ -86,7 +102,7 @@ public class OcrResultAdapter extends RecyclerView.Adapter<OcrResultAdapter.OcrV
     }
 
     public interface OrcResultAdapterOnClickListener {
-        void onClick(String currentObject, int currentPosition);
+        void onClick(OcrResultWrapper currentObject, int currentPosition);
 
     }
 }

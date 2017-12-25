@@ -125,7 +125,14 @@ public class FullReportActivity extends AppCompatActivity {
     void upload() {
 
         String sumString = sum.getText().toString().replace(",", ".");
-        Double sumDouble = Double.valueOf(sumString);
+
+        Double sumDouble = 0.0;
+        try {
+            sumDouble = Double.valueOf(sumString);
+        } catch (NumberFormatException e) {
+            Log.e("Error", "Error while reading ");
+            //TODO: Handle error while parsing double value from receipt.
+        }
 
         final BudgetEntryModel budgetEntry = new BudgetEntryModel();
 
@@ -147,7 +154,7 @@ public class FullReportActivity extends AppCompatActivity {
                     Toast.makeText(FullReportActivity.this, "Added budget entry to " + budgetEntry.getCategory() + " category, value of " + budgetEntry.getValue(), Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Toast.makeText(FullReportActivity.this, "Server is not running, saving to local db", Toast.LENGTH_LONG);
+                    Toast.makeText(FullReportActivity.this, "Server is not running, saving to local db", Toast.LENGTH_LONG).show();
                     addToLocalDb(budgetEntry);
                 }
             }

@@ -1,6 +1,7 @@
 package com.keehoo.kree.budgetguru.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -67,14 +68,14 @@ public class LoginActivity extends AppCompatActivity {
                 .requestEmail()
                 .build();
         mGoogleApiClient = new GoogleApiClient.Builder(this)
-                 .enableAutoManage(this, new GoogleApiClient.OnConnectionFailedListener() {
-                     @Override
-                     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-                         Toast.makeText(LoginActivity.this, "connection failed", Toast.LENGTH_SHORT).show();
-                     }
-                 })
-                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                 .build();
+                .enableAutoManage(this, new GoogleApiClient.OnConnectionFailedListener() {
+                    @Override
+                    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+                        Toast.makeText(LoginActivity.this, "connection failed", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,38 +105,46 @@ public class LoginActivity extends AppCompatActivity {
             // Signed in successfully, show authenticated UI.
             final GoogleSignInAccount acct = result.getSignInAccount();
             //mStatusTextView.setText(getString(R.string.signed_in_fmt, acct.getDisplayName()));
-           // updateUI(true);
+            // updateUI(true);
             Toast.makeText(this, acct.getDisplayName(), Toast.LENGTH_SHORT).show();
 
-            String detail = acct.getDisplayName()+"\n"+
-                    acct.getEmail()+"\n"+
-                    acct.getGivenName()+"\n"+
-                    acct.getAccount().toString()+"\n"+
+            String detail = acct.getDisplayName() + "\n" +
+                    acct.getEmail() + "\n" +
+                    acct.getGivenName() + "\n" +
+                    acct.getAccount().toString() + "\n" +
                     acct.getPhotoUrl();
             detailsTextView.setText(detail);
             if (acct.getPhotoUrl() != null) {
                 Picasso.with(this).load(acct.getPhotoUrl()).into(imageView);
             }
 
-            final User user = new User(acct.getGivenName()+"@"+acct.getEmail(), acct.getGivenName(), acct.getFamilyName(), acct.getEmail(), acct.getDisplayName());
+            final User user = new User(acct.getGivenName() + "@" + acct.getEmail(), acct.getGivenName(), acct.getFamilyName(), acct.getEmail(), acct.getDisplayName());
             RestInterface restClientImpl = RestInterface.retrofit.create(RestInterface.class);
             final Call<User> user1 = restClientImpl.createUser(user);
             user1.enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
+                    try {
+                        User retrieved = response.body();
 
-                    User retrieved = response.body();
+                        Toast.makeText(LoginActivity.this, "Retrieved user id : " + retrieved.getId(), Toast.LENGTH_LONG).show();
 
-                    Toast.makeText(LoginActivity.this, "Retrieved user id : "+retrieved.getId(), Toast.LENGTH_LONG).show();
+                        sessionData.saveUserPicUrl(acct.getPhotoUrl());
+                        sessionData.saveCurrentLoggedInUser(retrieved.getId());
+                        sessionData.saveCurrentUserLogin(acct.getDisplayName());
+                        sessionData.saveCurrentUserLastName(retrieved.getLastName());
+                        SessionData.setLogged(true);
 
-                    sessionData.saveUserPicUrl(acct.getPhotoUrl());
-                    sessionData.saveCurrentLoggedInUser(retrieved.getId());
-                    sessionData.saveCurrentUserLogin(acct.getDisplayName());
-                    sessionData.saveCurrentUserLastName(retrieved.getLastName());
-                    SessionData.setLogged(true);
-
-                    LoginActivity.this.startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    finish();
+                        LoginActivity.this.startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        finish();
+                    } catch (Throwable t) {
+                        sessionData.saveCurrentUserLogin("");
+                        sessionData.saveCurrentLoggedInUser(-1);
+                        sessionData.saveUserPicUrl(Uri.EMPTY);
+                        SessionData.setLogged(false);
+                        LoginActivity.this.startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        finish();
+                    }
                 }
 
                 @Override
@@ -149,9 +158,9 @@ public class LoginActivity extends AppCompatActivity {
 
         } else {
             Status status = result.getStatus();
-            Toast.makeText(this, status.getStatusMessage()+" "+status.getStatusCode(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, status.getStatusMessage() + " " + status.getStatusCode(), Toast.LENGTH_SHORT).show();
             // Signed out, show unauthenticated UI.
-          //  updateUI(false);
+            //  updateUI(false);
         }
     }
 

@@ -22,7 +22,8 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-        <activity android:name=".activities.MainActivity"
+        <activity
+            android:name=".activities.MainActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,12 +37,13 @@
         <activity
             android:name=".activities.OcrActivity"
             android:label="Read Text" />
-        <activity android:name=".activities.OcrResultAnalysisActivity"
-            android:theme="@style/Theme.AppCompat.Dialog.Alert"
-            />
+        <activity
+            android:name=".activities.OcrResultAnalysisActivity"
+            android:theme="@style/Theme.AppCompat.Dialog.Alert" />
         <activity android:name=".activities.FullReportActivity" />
-        <activity android:name=".activities.LoginActivity"
-            android:excludeFromRecents="true"/>
+        <activity
+            android:name=".activities.LoginActivity"
+            android:excludeFromRecents="true" />
         <activity
             android:name=".activities.LocalDatabaseActivity"
             android:label="@string/title_activity_local_database"
@@ -49,7 +51,9 @@
 
         <service
             android:name=".BudgetEntriesUploader"
-            android:exported="false"></service>
+            android:exported="false" />
+
+        <activity android:name=".activities.ValueEditActivity"></activity>
     </application>
 
 </manifest>
