@@ -110,7 +110,7 @@ public class OcrResultAnalysisActivity extends AppCompatActivity {
                     Log.d("Adding: ", line.getValue());
                     sumaLine = line;
                 }
-                if (line.getValue().matches(OcrResultAdapter.DATE_REGEX_WITH_DASH1)) {
+                if (line.getValue().matches(OcrResultAdapter.DATE_REGEX_WITH_DASH1) && !line.getValue().contains("NIP")) {
                     result.setReceiptDate(line.getValue());
                     Log.d("Adding: ", line.getValue());
                 }
