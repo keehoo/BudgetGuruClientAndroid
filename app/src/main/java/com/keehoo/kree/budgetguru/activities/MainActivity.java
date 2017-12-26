@@ -17,6 +17,7 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.keehoo.kree.budgetguru.Data;
 import com.keehoo.kree.budgetguru.R;
@@ -31,6 +32,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.keehoo.kree.budgetguru.activities.OcrResultAnalysisActivity.OCR_RESULTS;
+
 public class MainActivity extends AppCompatActivity implements ChartFiller {
 
     private static final int RC_OCR_CAPTURE = 9003;
@@ -41,23 +44,10 @@ public class MainActivity extends AppCompatActivity implements ChartFiller {
     @BindView(R.id.imageButton5)
     ImageButton ocrButton;
 
-  /*  @BindView(R.id.current_user)
-    TextView currentUserTextView;
-
-    @BindView(R.id.create_new_user)
-    Button createUserButton;
-    @BindView(R.id.create_budget_entry)
-    Button createBudgetEntryButton;
-    @BindView(R.id.login)
-    Button loginButton;
-    @BindView(R.id.ocr)
-    Button ocrButton;
-    @BindView(R.id.local_database)
-    Button localDatabase;*/
+    @BindView(R.id.imageButton7)
+    ImageButton statsButton;
 
     private PieChart mChart;
-
-    private Long currentUserId;
     private List<BudgetEntryModel> budgetEntryModels;
 
     @Override
@@ -70,9 +60,6 @@ public class MainActivity extends AppCompatActivity implements ChartFiller {
             startActivity(intent);
         }
         setUserNameField();
-        setCurrentUserView();
-        //tryToFillChart();
-        // setupMainScreenChart();
     }
 
     @Override
@@ -101,7 +88,6 @@ public class MainActivity extends AppCompatActivity implements ChartFiller {
     }
 
     private void setUserNameField() {
-
         SessionData sessionData = new SessionData(this);
         TextView userName = (TextView) findViewById(R.id.userName_id);
         userName.setText(new StringBuilder().append(sessionData.getLoggedUserName()).toString());
@@ -165,7 +151,6 @@ public class MainActivity extends AppCompatActivity implements ChartFiller {
         new Data(this).getAllBudgetEntries();
     }
 
-
     private void setMainScreenChartData(int count, float range) {
 
 
@@ -174,49 +159,23 @@ public class MainActivity extends AppCompatActivity implements ChartFiller {
         for (BudgetEntryModel b : budgetEntryModels) {
             values.add(new PieEntry((float) b.getValue(), b.getCategory()));
         }
-//        for (int i = 0; i < count; i++) {
-//            values.add(new PieEntry((float) ((Math.random() * range) + range / 5), mParties[i % mParties.length]));
-//        }
-
-        PieDataSet dataSet = new PieDataSet(values, "Election Results");
+        PieDataSet dataSet = new PieDataSet(values, "Biggest expenses");
         dataSet.setSliceSpace(3f);
         dataSet.setSelectionShift(5f);
-
-        dataSet.setColors(R.color.colorPrimary, R.color.colorAccent, R.color.colorPrimaryDark);
-
+        dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
         dataSet.setSelectionShift(0f);
-
         PieData data = new PieData(dataSet);
         data.setValueFormatter(new PercentFormatter());
         data.setValueTextSize(11f);
         data.setValueTextColor(Color.WHITE);
-        // data.setValueTypeface(mTfLight);
         mChart.setData(data);
-        Log.d("FILLER", "got a signal to fill up chart");
         mChart.invalidate();
-    }
-
-
-    private void setCurrentUserView() {
-        currentUserId = new SessionData(this).getLoggedUserId();
-        //currentUserTextView.setText("Current User Id: "+currentUserId);
     }
 
     @Override
     public void fillChart(List<BudgetEntryModel> listOfEntries) {
-        Toast.makeText(this, "Got a signal to fill chart", Toast.LENGTH_SHORT).show();
         budgetEntryModels = listOfEntries;
-        //setMainScreenChartData(3, 100);
         setupMainScreenChart();
-    }
-
-    @OnClick(R.id.imageButton5)
-    void startOcrActivity() {
-        Intent intent = new Intent(this, OcrActivity.class);
-        intent.putExtra(OcrActivity.AutoFocus, true);
-        intent.putExtra(OcrActivity.UseFlash, false);
-
-        startActivityForResult(intent, RC_OCR_CAPTURE);
     }
 
     @Override
@@ -227,17 +186,31 @@ public class MainActivity extends AppCompatActivity implements ChartFiller {
                     String result = data.getStringExtra("ocred_text");
                     Log.d(this.getPackageCodePath(), result);
                     Intent intentWithResults = new Intent(this, OcrResultAnalysisActivity.class);
-                    intentWithResults.putExtra("ocr_results", result);
+                    intentWithResults.putExtra(OCR_RESULTS, result);
                     startActivity(intentWithResults);
                 } else {
                     Toast.makeText(this, "text is null", Toast.LENGTH_LONG).show();
                 }
             } else {
-
+                Toast.makeText(this, "Error while reading receipt values", Toast.LENGTH_SHORT).show();
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    @OnClick(R.id.imageButton5)
+    void startOcrActivity() {
+        Intent intent = new Intent(this, OcrActivity.class);
+        intent.putExtra(OcrActivity.AutoFocus, true);
+        intent.putExtra(OcrActivity.UseFlash, false);
+        startActivityForResult(intent, RC_OCR_CAPTURE);
+    }
+
+    @OnClick(R.id.imageButton7)
+    void startStatsActivity() {
+        Intent intent = new Intent(this, StatsActivity.class);
+        startActivity(intent);
     }
 }
 /*

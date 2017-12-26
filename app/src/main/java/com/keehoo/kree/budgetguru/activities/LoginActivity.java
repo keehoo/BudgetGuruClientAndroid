@@ -139,7 +139,7 @@ public class LoginActivity extends AppCompatActivity {
                         finish();
                     } catch (Throwable t) {
                         sessionData.saveCurrentUserLogin("");
-                        sessionData.saveCurrentLoggedInUser(-1);
+                        sessionData.saveCurrentLoggedInUser(9999);
                         sessionData.saveUserPicUrl(Uri.EMPTY);
                         SessionData.setLogged(false);
                         LoginActivity.this.startActivity(new Intent(LoginActivity.this, MainActivity.class));

@@ -30,6 +30,7 @@ public class OcrResultAnalysisActivity extends AppCompatActivity {
     public static final String CURRENT_VALUE = "Current_value";
     public static final String CURRENT_INDEX = "Current_index";
     public static final int VAL_EDIT_REQUEST_CODE = 9976;
+    public static final String OCR_RESULTS = "ocr_results";
     @BindView(R.id.seeFullReportButtonId)
     Button seeFullReportButton;
 
@@ -44,17 +45,19 @@ public class OcrResultAnalysisActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ocr_result_analysis);
         ButterKnife.bind(this);
+        initializeRecyclerViewWithValuesFromIntent();
+    }
+
+    private void initializeRecyclerViewWithValuesFromIntent() {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         Intent intent = getIntent();
-        String ocrResultList = intent.getExtras().getString("ocr_results");
+        String ocrResultList = intent.getExtras().getString(OCR_RESULTS);
         Type listType = new TypeToken<ArrayList<Line>>() {
         }.getType();
         Gson gson = new Gson();
         listOfLines = gson.fromJson(ocrResultList, listType);
         List<OcrResultWrapper> listToBePassedToAdapter = new ArrayList<>();
         listToBePassedToAdapter.add(analyzeLines());
-
-
         setTheList(listToBePassedToAdapter);
     }
 
@@ -85,9 +88,7 @@ public class OcrResultAnalysisActivity extends AppCompatActivity {
                     OcrResultWrapper wrapper = new Gson().fromJson(stringExtra, OcrResultWrapper.class);
                     List<OcrResultWrapper> list = new ArrayList<>();
                     list.add(wrapper);
-              //     adapter.notifyDataSetChanged();
                     adapter.notifuListChanged(list);
-              //      setTheList(list);
                     recyclerView.setAdapter(adapter);
                 }
             }
@@ -138,7 +139,6 @@ public class OcrResultAnalysisActivity extends AppCompatActivity {
 
     @OnClick(R.id.seeFullReportButtonId)
     void seeFullReport() {
-
         Intent intent = new Intent(this, FullReportActivity.class);
         intent.putExtra("sum", ocrResult.getReceiptTotalValue());
         intent.putExtra("date", ocrResult.getReceiptDate());

@@ -53,7 +53,10 @@
             android:name=".BudgetEntriesUploader"
             android:exported="false" />
 
-        <activity android:name=".activities.ValueEditActivity"></activity>
+        <activity android:name=".activities.ValueEditActivity" />
+        <activity android:name=".activities.StatsActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+            ></activity>
     </application>
 
 </manifest>
