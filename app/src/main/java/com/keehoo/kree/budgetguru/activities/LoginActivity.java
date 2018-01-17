@@ -124,26 +124,34 @@ public class LoginActivity extends AppCompatActivity {
             user1.enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
-                    try {
-                        User retrieved = response.body();
+                    if (response.code() != 503) {
+                        try {
+                            User retrieved = response.body();
 
-                        Toast.makeText(LoginActivity.this, "Retrieved user id : " + retrieved.getId(), Toast.LENGTH_LONG).show();
 
+                            Toast.makeText(LoginActivity.this, "Retrieved user id : " + retrieved.getId(), Toast.LENGTH_LONG).show();
+
+                            sessionData.saveUserPicUrl(acct.getPhotoUrl());
+                            sessionData.saveCurrentLoggedInUser(retrieved.getId());
+                            sessionData.saveCurrentUserLogin(acct.getDisplayName());
+                            sessionData.saveCurrentUserLastName(retrieved.getLastName());
+                            SessionData.setLogged(true);
+
+                            goToMainActivity();
+                        } catch (Throwable t) {
+                            sessionData.saveCurrentUserLogin("");
+                            sessionData.saveCurrentLoggedInUser(9999);
+                            sessionData.saveUserPicUrl(Uri.EMPTY);
+                            SessionData.setLogged(false);
+                            goToMainActivity();
+                        }
+                    } else {
                         sessionData.saveUserPicUrl(acct.getPhotoUrl());
-                        sessionData.saveCurrentLoggedInUser(retrieved.getId());
                         sessionData.saveCurrentUserLogin(acct.getDisplayName());
-                        sessionData.saveCurrentUserLastName(retrieved.getLastName());
+                        sessionData.saveCurrentUserLastName(acct.getFamilyName());
                         SessionData.setLogged(true);
-
-                        LoginActivity.this.startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        finish();
-                    } catch (Throwable t) {
-                        sessionData.saveCurrentUserLogin("");
-                        sessionData.saveCurrentLoggedInUser(9999);
-                        sessionData.saveUserPicUrl(Uri.EMPTY);
-                        SessionData.setLogged(false);
-                        LoginActivity.this.startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        finish();
+                        sessionData.setOffline(true);
+                        goToMainActivity();
                     }
                 }
 
@@ -162,6 +170,11 @@ public class LoginActivity extends AppCompatActivity {
             // Signed out, show unauthenticated UI.
             //  updateUI(false);
         }
+    }
+
+    private void goToMainActivity() {
+        LoginActivity.this.startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        finish();
     }
 
     @OnClick(R.id.logout)

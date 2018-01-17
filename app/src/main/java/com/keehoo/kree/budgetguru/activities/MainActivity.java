@@ -22,6 +22,7 @@ import com.google.android.gms.common.api.CommonStatusCodes;
 import com.keehoo.kree.budgetguru.Data;
 import com.keehoo.kree.budgetguru.R;
 import com.keehoo.kree.budgetguru.data_models.BudgetEntryModel;
+import com.keehoo.kree.budgetguru.database.AppDatabase;
 import com.keehoo.kree.budgetguru.repositories.SessionData;
 import com.squareup.picasso.Picasso;
 
@@ -47,6 +48,9 @@ public class MainActivity extends AppCompatActivity implements ChartFiller {
     @BindView(R.id.imageButton7)
     ImageButton statsButton;
 
+    @BindView(R.id.imageButton8)
+    ImageButton localDbButton;
+
     private PieChart mChart;
     private List<BudgetEntryModel> budgetEntryModels;
 
@@ -58,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements ChartFiller {
         if (!SessionData.isLogged()) {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
+            finish();
         }
         setUserNameField();
     }
@@ -99,17 +104,8 @@ public class MainActivity extends AppCompatActivity implements ChartFiller {
     private void setupMainScreenChart() {
         mChart = (PieChart) findViewById(R.id.chart1);
         mChart.setBackgroundColor(Color.TRANSPARENT);
-
-        //  moveOffScreen();
-
-        // mChart.setLayoutParams(new WindowManager.LayoutParams(200, 200, 200, 200, 0, 0, 0));
-
         mChart.setUsePercentValues(true);
         mChart.getDescription().setEnabled(false);
-
-        // mChart.setCenterTextTypeface(mTfLight);
-        // mChart.setCenterText(generateCenterSpannableText());
-
         mChart.setDrawHoleEnabled(true);
         mChart.setHoleColor(Color.TRANSPARENT);
 
@@ -128,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements ChartFiller {
         mChart.setRotationAngle(180f);
         mChart.setCenterTextOffset(0, -20);
 
-        setMainScreenChartData(3, 100);
+        setMainScreenChartData();
 
         mChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
 
@@ -151,9 +147,7 @@ public class MainActivity extends AppCompatActivity implements ChartFiller {
         new Data(this).getAllBudgetEntries();
     }
 
-    private void setMainScreenChartData(int count, float range) {
-
-
+    private void setMainScreenChartData() {
         ArrayList<PieEntry> values = new ArrayList<PieEntry>();
 
         for (BudgetEntryModel b : budgetEntryModels) {
@@ -175,6 +169,10 @@ public class MainActivity extends AppCompatActivity implements ChartFiller {
     @Override
     public void fillChart(List<BudgetEntryModel> listOfEntries) {
         budgetEntryModels = listOfEntries;
+        if (null==budgetEntryModels || budgetEntryModels.isEmpty()){
+            AppDatabase appDatabase = AppDatabase.getAppDatabase(this);
+            budgetEntryModels = appDatabase.budgetEntryDao().getAll();
+        }
         setupMainScreenChart();
     }
 
@@ -210,6 +208,12 @@ public class MainActivity extends AppCompatActivity implements ChartFiller {
     @OnClick(R.id.imageButton7)
     void startStatsActivity() {
         Intent intent = new Intent(this, StatsActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.imageButton8)
+    void startLocalDbActivity() {
+        Intent intent = new Intent(this, LocalDatabaseActivity.class);
         startActivity(intent);
     }
 }

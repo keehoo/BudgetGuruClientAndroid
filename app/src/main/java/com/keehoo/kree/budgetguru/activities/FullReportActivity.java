@@ -32,6 +32,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.keehoo.kree.budgetguru.activities.OcrResultAnalysisActivity.DATE_PATTERN_2;
+
 public class FullReportActivity extends AppCompatActivity {
 
     RestInterface restInterface = RestInterface.retrofit.create(RestInterface.class);
@@ -43,21 +45,18 @@ public class FullReportActivity extends AppCompatActivity {
     @BindView(R.id.sum)
     TextView sum;
 
-
     @BindView(R.id.date)
     TextView date;
-
 
     @BindView(R.id.time)
     TextView time;
 
-
     @BindView(R.id.category)
     TextView categoryTextView;
 
-
     @BindView(R.id.upload)
     Button uploadButton;
+    private SessionData session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,28 +64,56 @@ public class FullReportActivity extends AppCompatActivity {
         setContentView(R.layout.activity_full_report);
         ButterKnife.bind(this);
 
+        session = new SessionData(FullReportActivity.this);
+
+
         Intent intent = getIntent();
 
         sum.setText(intent.getStringExtra("sum"));
 
         String mydata = intent.getStringExtra("date");
-        Pattern pattern = Pattern.compile(OcrResultAdapter.DATE_REGEX_WITH_DASH_DATE_ONLY);
-        Matcher matcher = pattern.matcher(mydata);
-        String dateOnly = null;
-        if (matcher.find()) {
-            dateOnly = matcher.group(0);
-            System.out.println(matcher.group(0));
-            System.out.println(matcher.group(1));
-        }
-        if (dateOnly != null) {
-            date.setText(dateOnly);
-        } else {
-            date.setText(intent.getStringExtra("date"));
+        if (null != mydata) {
+            Pattern pattern = Pattern.compile(OcrResultAdapter.DATE_REGEX_WITH_DASH_DATE_ONLY);
+            Matcher matcher = pattern.matcher(mydata);
+            String dateOnly = null;
+            if (matcher.find()) {
+                dateOnly = matcher.group(0);
+                System.out.println(matcher.group(0));
+                System.out.println(matcher.group(1));
+            }
+            if (dateOnly != null) {
+                date.setText(dateOnly);
+            } else {
+                date.setText(intent.getStringExtra("date"));
+                // try to parse the date for dn.17r... pattern
+                tryToParseFromDifferentPattern(DATE_PATTERN_2);
+            }
         }
         time.setText(intent.getStringExtra("time"));
         categoryList = (RecyclerView) findViewById(R.id.category_recycler_view);
         getList();
+    }
 
+    private void tryToParseFromDifferentPattern(String datePattern2) {
+        Pattern pattern = Pattern.compile(datePattern2);
+        Matcher matcher = pattern.matcher(getIntent().getStringExtra("date"));
+        String dateMatch = null;
+        if (matcher.find()) {
+            dateMatch = matcher.group(0);
+            StringBuilder finalDateValue = new StringBuilder();
+            for (Character c : dateMatch.toCharArray()) {
+                if (Character.isDigit(c)) {
+                    finalDateValue.append(c);
+                }
+            }
+            String twoThousandPrefix = "20";
+            String year = finalDateValue.toString().substring(0, 2);
+            String dash = "-";
+            String month = finalDateValue.toString().substring(2, 4);
+            String day = finalDateValue.toString().substring(4, 6);
+
+            date.setText(twoThousandPrefix+year+dash+month+dash+day);
+        }
 
     }
 
@@ -101,7 +128,6 @@ public class FullReportActivity extends AppCompatActivity {
                 } else {
                     catList = Collections.emptyList();
                 }
-
                 CategoryListAdapter adapter = new CategoryListAdapter(FullReportActivity.this, catList);
                 adapter.setOnItemClickListener((position, object) -> setCategoryFieldAndUpdateTextView(object));
                 categoryList.setLayoutManager(new LinearLayoutManager(FullReportActivity.this));
@@ -152,9 +178,15 @@ public class FullReportActivity extends AppCompatActivity {
                     Log.d("Add response", "code: " + response.code());
 
                     Toast.makeText(FullReportActivity.this, "Added budget entry to " + budgetEntry.getCategory() + " category, value of " + budgetEntry.getValue(), Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     Toast.makeText(FullReportActivity.this, "Server is not running, saving to local db", Toast.LENGTH_LONG).show();
+                    addToLocalDb(budgetEntry);
+                }
+
+                if (response.code() == 503) {
+                    // Server is down
+                    Toast.makeText(FullReportActivity.this, "Server is down, saving to local db", Toast.LENGTH_SHORT).show();
+                    session.setOffline(true);
                     addToLocalDb(budgetEntry);
                 }
             }

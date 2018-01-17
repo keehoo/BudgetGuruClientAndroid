@@ -49,10 +49,13 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
 
     @Override
     public int getItemCount() {
-        return listOfCategories.size();
+        if (null != listOfCategories && !listOfCategories.isEmpty()) {
+            return listOfCategories.size();
+        } else
+            return 0;
     }
 
-    class CategoryListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class CategoryListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView textField;
 
@@ -77,7 +80,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
     }
 
     public interface OnItemClickListener {
-        void onClick (int position, String object);
+        void onClick(int position, String object);
 
     }
 }

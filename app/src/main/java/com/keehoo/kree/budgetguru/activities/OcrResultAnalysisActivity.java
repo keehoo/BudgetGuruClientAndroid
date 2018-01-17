@@ -31,6 +31,7 @@ public class OcrResultAnalysisActivity extends AppCompatActivity {
     public static final String CURRENT_INDEX = "Current_index";
     public static final int VAL_EDIT_REQUEST_CODE = 9976;
     public static final String OCR_RESULTS = "ocr_results";
+    public static final String DATE_PATTERN_2 = "d[nh]?.(20)?\\d\\d[rh]?\\d\\d.?\\d\\d";
     @BindView(R.id.seeFullReportButtonId)
     Button seeFullReportButton;
 
@@ -111,7 +112,9 @@ public class OcrResultAnalysisActivity extends AppCompatActivity {
                     Log.d("Adding: ", line.getValue());
                     sumaLine = line;
                 }
-                if (line.getValue().matches(OcrResultAdapter.DATE_REGEX_WITH_DASH1) && !line.getValue().contains("NIP")) {
+                if (line.getValue().matches(OcrResultAdapter.DATE_REGEX_WITH_DASH1)
+                || (line.getValue().matches(DATE_PATTERN_2)
+                        && !line.getValue().contains("NIP"))) {
                     result.setReceiptDate(line.getValue());
                     Log.d("Adding: ", line.getValue());
                 }

@@ -16,6 +16,7 @@ public class SessionData {
     private static final String CURRENT_USER_NAME = "CURRENT_USER_NAME";
     private static final String CURRENT_USER_LAST_NAME = "CURRENT_USER_LAST_NAME";
     private static final String USER_PHOTO_URL = "user_photo_url";
+    public static final String OFFLINE = "OFFLINE";
 
     private static boolean isLogged;
     private String currentUserLogin;
@@ -70,5 +71,13 @@ public class SessionData {
             return Uri.parse(preferences.getString(USER_PHOTO_URL, null));
         }
         else return null;
+    }
+
+    public void setOffline(boolean b) {
+        preferences.edit().putBoolean(OFFLINE, b).commit();
+    }
+
+    public boolean isOffline() {
+        return preferences.getBoolean(OFFLINE, false);
     }
 }
